@@ -1,0 +1,258 @@
+services:
+  postgres:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: sandbox
+      POSTGRES_USER: sandbox
+      POSTGRES_PASSWORD: sandbox
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sandbox -d sandbox"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7.4-alpine
+    command: ["redis-server", "--appendonly", "no"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+  jaeger:
+    image: jaegertracing/all-in-one:1.72.0
+    environment:
+      COLLECTOR_OTLP_ENABLED: 'true'
+    ports:
+      - "${JAEGER_UI_PORT:-16686}:16686"
+      - "4318:4318"
+
+  prometheus:
+    image: prom/prometheus:v3.7.2
+    depends_on:
+      app:
+        condition: service_started
+    volumes:
+      - ./docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    ports:
+      - "${PROMETHEUS_PORT:-9090}:9090"
+
+  clickhouse:
+    image: clickhouse/clickhouse-server:24.8-alpine
+    profiles: ["analytics"]
+    environment:
+      CLICKHOUSE_DB: sandbox
+      CLICKHOUSE_USER: sandbox
+      CLICKHOUSE_PASSWORD: sandbox
+    ports:
+      - "${CLICKHOUSE_PORT:-18123}:8123"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:8123/ping | grep -q Ok"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  grafana:
+    build:
+      context: docker/grafana
+    profiles: ["analytics"]
+    depends_on:
+      prometheus:
+        condition: service_started
+    environment:
+      GF_AUTH_ANONYMOUS_ENABLED: 'true'
+      GF_AUTH_ANONYMOUS_ORG_ROLE: Viewer
+      GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: /var/lib/grafana/dashboards/sandbox.json
+    volumes:
+      - ./docker/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./docker/grafana/dashboards:/var/lib/grafana/dashboards:ro
+    ports:
+      - "${GRAFANA_PORT:-13000}:3000"
+    # Without a health check `--wait` returned while Grafana was still
+    # starting, and the analytics page reported it as not running.
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:3000/api/health"]
+      interval: 3s
+      timeout: 3s
+      retries: 40
+
+  app:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      jaeger:
+        condition: service_started
+      payment-mock:
+        condition: service_healthy
+      webhook-mock:
+        condition: service_healthy
+    environment:
+      APP_ENV: ${APP_ENV:-dev}
+      APP_DEBUG: ${APP_DEBUG:-false}
+      DB_HOST: postgres
+      DB_PORT: '5432'
+      DB_NAME: sandbox
+      DB_USER: sandbox
+      DB_PASSWORD: sandbox
+      REDIS_URL: redis://redis:6379
+      PAYMENT_GATEWAY_URL: http://payment-mock:8081
+      PAYMENTS_ENABLED: ${PAYMENTS_ENABLED:-true}
+      CAPTCHA_ENABLED: ${CAPTCHA_ENABLED:-false}
+      RECAPTCHA_VERIFY_URL: ${RECAPTCHA_VERIFY_URL:-https://www.google.com/recaptcha/api/siteverify}
+      MAINTENANCE_ENABLED: ${MAINTENANCE_ENABLED:-false}
+      MAINTENANCE_RETRY_AFTER: ${MAINTENANCE_RETRY_AFTER:-120}
+      MAINTENANCE_BYPASS_TOKEN: ${MAINTENANCE_BYPASS_TOKEN:-sandbox-maintenance-bypass}
+      PAYMENT_GATEWAY_TIMEOUT_MS: ${PAYMENT_GATEWAY_TIMEOUT_MS:-3000}
+      PAYMENT_GATEWAY_CONNECT_TIMEOUT_MS: ${PAYMENT_GATEWAY_CONNECT_TIMEOUT_MS:-1000}
+      PAYMENT_GATEWAY_MODE: ${PAYMENT_GATEWAY_MODE:-sandbox}
+      OTEL_SERVICE_NAME: rasuvaeff-sandbox
+      OTEL_PHP_FIBERS_ENABLED: 'true'
+      # Host ports the browser must dial; /ui/ports.json hands them to the pages.
+      CENTRIFUGO_PUBLIC_PORT: ${CENTRIFUGO_PORT:-8000}
+      JAEGER_UI_PORT: ${JAEGER_UI_PORT:-16686}
+      PROMETHEUS_PORT: ${PROMETHEUS_PORT:-9090}
+      GRAFANA_PORT: ${GRAFANA_PORT:-13000}
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://jaeger:4318
+      MCP_ENDPOINT_SECRET: ${MCP_ENDPOINT_SECRET:-sandbox-mcp-secret}
+      MCP_USER_ID: ${MCP_USER_ID:-demo-user}
+      CENTRIFUGO_API_URL: ${CENTRIFUGO_API_URL:-http://centrifugo:9000}
+      CENTRIFUGO_API_KEY: ${CENTRIFUGO_API_KEY:-sandbox-centrifugo-key}
+      # Signs the browser's connection token; Centrifugo gets the same value below.
+      CENTRIFUGO_TOKEN_SECRET: ${CENTRIFUGO_TOKEN_SECRET:-sandbox-centrifugo-token-secret-0123456789}
+    volumes:
+      - .:/workspace/sandbox
+    working_dir: /workspace/sandbox
+    ports:
+      - "${APP_PORT:-8080}:8080"
+    # Migrations run before the server: flags and settings live in tables the
+    # container reads on every request, and on a fresh volume the first
+    # request (the health check included) would otherwise be a 500.
+    command: >-
+      bash -lc "composer install --no-interaction --no-progress
+      && ./yii migrate:up -n
+      && php -S 0.0.0.0:8080 -t public public/index.php"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://127.0.0.1:8080/health >/dev/null || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+  # Only for the web UI (`make ui`): processes the outbox every second, so an
+  # order moves on its own while a person watches. Every other target runs the
+  # worker by hand and must not share the outbox with this loop.
+  worker:
+    profiles: ["ui"]
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    depends_on:
+      app:
+        condition: service_healthy
+      centrifugo:
+        condition: service_healthy
+    environment:
+      APP_ENV: ${APP_ENV:-dev}
+      APP_DEBUG: ${APP_DEBUG:-false}
+      DB_HOST: postgres
+      DB_PORT: '5432'
+      DB_NAME: sandbox
+      DB_USER: sandbox
+      DB_PASSWORD: sandbox
+      REDIS_URL: redis://redis:6379
+      PAYMENT_GATEWAY_URL: http://payment-mock:8081
+      PAYMENT_GATEWAY_TIMEOUT_MS: ${PAYMENT_GATEWAY_TIMEOUT_MS:-3000}
+      PAYMENT_GATEWAY_CONNECT_TIMEOUT_MS: ${PAYMENT_GATEWAY_CONNECT_TIMEOUT_MS:-1000}
+      PAYMENT_GATEWAY_MODE: ${PAYMENT_GATEWAY_MODE:-sandbox}
+      OTEL_SERVICE_NAME: rasuvaeff-sandbox-worker
+      OTEL_PHP_FIBERS_ENABLED: 'true'
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://jaeger:4318
+      # Above the 15 s breaker cooldown: three attempts span the open circuit,
+      # so a payment queued behind an outage is retried once it closes.
+      OUTBOX_RETRY_DELAY_SECONDS: ${OUTBOX_RETRY_DELAY_SECONDS:-10}
+      # Every payment result goes to Centrifugo (live order page), the webhook
+      # receiver and the receipt store; `make ui-full` adds ClickHouse.
+      RESULT_SINKS: ${RESULT_SINKS:-centrifugo,webhooks,receipts}
+      # `make ui-full` exports A/B events to ClickHouse; without it they stay
+      # pending in the outbox and leave the first time ClickHouse is there.
+      AB_EXPORT: ${AB_EXPORT:-0}
+      CENTRIFUGO_API_URL: http://centrifugo:9000
+      CENTRIFUGO_API_KEY: sandbox-centrifugo-key
+    volumes:
+      - .:/workspace/sandbox
+    working_dir: /workspace/sandbox
+    command: >-
+      bash -lc "while true; do ./yii sandbox:outbox:run || true; ./yii sandbox:projections:run || true; if [ \"$$AB_EXPORT\" = 1 ]; then ./yii sandbox:ab:export || true; fi; sleep 1; done"
+
+  payment-mock:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    environment:
+      PAYMENT_MOCK_DELAY_MS: "${PAYMENT_MOCK_DELAY_MS:-0}"
+      PAYMENT_MOCK_FAIL: "${PAYMENT_MOCK_FAIL:-0}"
+      PAYMENT_MOCK_UNAVAILABLE: "${PAYMENT_MOCK_UNAVAILABLE:-0}"
+    volumes:
+      - .:/workspace/sandbox:ro
+    working_dir: /workspace/sandbox
+    ports:
+      - "${PAYMENT_MOCK_PORT:-8081}:8081"
+    command: >-
+      php -S 0.0.0.0:8081 -t mock-payment mock-payment/index.php
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://127.0.0.1:8081/health >/dev/null || exit 1"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+  webhook-mock:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    environment:
+      WEBHOOK_SECRET: sandbox-webhook-secret
+      WEBHOOK_FAIL_FIRST: "${WEBHOOK_FAIL_FIRST:-0}"
+    volumes:
+      - .:/workspace/sandbox:ro
+    working_dir: /workspace/sandbox
+    ports:
+      - "${WEBHOOK_MOCK_PORT:-8082}:8082"
+    command: >-
+      php -S 0.0.0.0:8082 -t mock-webhook mock-webhook/index.php
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://127.0.0.1:8082/health >/dev/null || exit 1"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+  centrifugo:
+    image: centrifugo/centrifugo:v6
+    profiles: ["realtime", "ui"]
+    command: centrifugo -c /centrifugo/config.json
+    environment:
+      # Overrides client.token.hmac_secret_key of config.json: one variable
+      # for the signer (app) and the verifier (here).
+      CENTRIFUGO_CLIENT_TOKEN_HMAC_SECRET_KEY: ${CENTRIFUGO_TOKEN_SECRET:-sandbox-centrifugo-token-secret-0123456789}
+    volumes:
+      - ./docker/centrifugo/config.json:/centrifugo/config.json:ro
+    # Only the browser's WebSocket port is published. The publish API (and
+    # health) listen on the internal port 9000, which stays on the compose
+    # network: with the API on 8000, anyone reaching the host could forge an
+    # order status with the committed key.
+    ports:
+      - "${CENTRIFUGO_PORT:-8000}:8000"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:9000/health"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  postgres-data:

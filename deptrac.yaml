@@ -1,0 +1,114 @@
+parameters:
+    paths:
+        - src/
+
+deptrac:
+    layers:
+        - name: Domain
+          collectors:
+              - type: bool
+                must:
+                    - type: classNameRegex
+                      value: '#^App\\Domain\\#'
+                must_not:
+                    - type: classNameRegex
+                      value: '#Repository(Interface)?$#'
+
+        - name: DomainRepository
+          collectors:
+              - type: classNameRegex
+                value: '#^App\\Domain\\.*Repository(Interface)?$#'
+
+        - name: Application
+          collectors:
+              - type: classNameRegex
+                value: '#^App\\Application\\#'
+
+        - name: Infrastructure
+          collectors:
+              - type: classNameRegex
+                value: '#^App\\Infrastructure\\#'
+
+        - name: Endpoint
+          collectors:
+              - type: classNameRegex
+                value: '#^App\\Endpoint\\#'
+
+        - name: Bootloader
+          collectors:
+              - type: classNameRegex
+                value: '#^App\\Bootloader\\#'
+
+        - name: Shared
+          collectors:
+              - type: classNameRegex
+                value: '#^App\\Shared\\#'
+
+        # Vendor fences: anchored classNameRegex only (classLike is unanchored).
+        # A package outside these layers is Uncovered and allowed everywhere.
+        - name: VendorPersistence
+          collectors:
+              - type: classNameRegex
+                value: '#^Yiisoft\\Db\\#'
+              - type: classNameRegex
+                value: '#^Predis\\#'
+              - type: classNameRegex
+                value: '#^SimPod\\ClickHouseClient\\#'
+              - type: classNameRegex
+                value: '#^Rasuvaeff\\ClickHouseToolkit\\#'
+
+        - name: VendorSpecification
+          collectors:
+              - type: classNameRegex
+                value: '#^Rasuvaeff\\Specification\\#'
+
+        - name: VendorHttp
+          collectors:
+              - type: classNameRegex
+                value: '#^Psr\\Http\\#'
+              - type: classNameRegex
+                value: '#^GuzzleHttp\\#'
+              - type: classNameRegex
+                value: '#^HttpSoft\\#'
+              - type: classNameRegex
+                value: '#^Yiisoft\\Router\\#'
+              - type: classNameRegex
+                value: '#^Yiisoft\\Input\\Http\\#'
+
+    ruleset:
+        Domain:
+            - DomainRepository
+            - VendorSpecification
+        DomainRepository:
+            - Domain
+            - VendorSpecification
+        Application:
+            - Domain
+            - DomainRepository
+            - Shared
+            - VendorSpecification
+        Infrastructure:
+            - Domain
+            - DomainRepository
+            - Application
+            - Shared
+            - VendorPersistence
+            - VendorSpecification
+            - VendorHttp
+        Endpoint:
+            - Application
+            - Domain
+            - Shared
+            - VendorHttp
+        Bootloader:
+            - Domain
+            - DomainRepository
+            - Application
+            - Infrastructure
+            - Endpoint
+            - Shared
+            - VendorPersistence
+            - VendorSpecification
+            - VendorHttp
+        Shared:
+            - VendorHttp

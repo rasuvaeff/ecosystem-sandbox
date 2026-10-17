@@ -1,0 +1,29 @@
+{
+    "$schema": "vendor/infection/infection/resources/schema.json",
+    // The domain and the use cases: the rules worth a mutant. Adapters,
+    // endpoints and wiring are proven by the make targets against the
+    // running stack, which a mutant run cannot start.
+    "source": {
+        "directories": ["src/Domain", "src/Application"]
+    },
+    "logs": {
+        "text": "build/infection.log",
+        "summary": "build/infection-summary.log",
+        // Per-mutant log for the ratchet (rasuvaeff/mutation-history); a
+        // config key only, Infection has no flag for it.
+        "json": "build/infection-log.json",
+        // What a person reads: every mutant with its diff (CI artifact).
+        "html": "build/reports/infection.html"
+    },
+    "testFramework": "testo",
+    "testFrameworkOptions": "--suite=Mutation",
+    "minMsi": 95,
+    "mutators": {
+        "@default": true,
+        // Equivalent: a parse that failed always carries a null value, so
+        // `!ok || !value instanceof` and `!ok && !value instanceof` agree.
+        "LogicalOr": {
+            "ignore": ["App\\Application\\Shared\\Integration\\IntegrationEventRegistry::parse"]
+        }
+    }
+}

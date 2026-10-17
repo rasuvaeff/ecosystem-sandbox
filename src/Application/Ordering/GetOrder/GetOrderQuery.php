@@ -1,0 +1,12 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Application\Ordering\GetOrder;
+
+use App\Domain\Ordering\OrderId;
+
+final readonly class GetOrderQuery
+{
+    public function __construct(public OrderId $orderId) {}
+}

@@ -1,0 +1,154 @@
+name: build
+
+on:
+  pull_request:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+# Every job is a fresh runner, so every target starts on a fresh volume, as
+# the README promises. The targets drive Docker Compose themselves.
+jobs:
+  quality:
+    name: Static analysis, unit and property suites
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v4
+        with:
+          persist-credentials: false
+
+      - name: make check
+        run: make check
+
+      - name: make testo
+        run: make testo
+
+      - name: make property-test
+        run: make property-test
+
+      - name: Test report summary
+        if: ${{ !cancelled() }}
+        run: docker compose run --rm --no-deps app php bin/test-summary.php >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload the test reports
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: test-reports
+          path: build/reports/
+          if-no-files-found: ignore
+
+  mutation:
+    name: Mutation gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v4
+        with:
+          persist-credentials: false
+
+      # The ratchet compares this run with the previous one: the ledger
+      # travels between runs in the cache. restore/save are split so a red
+      # run, the one the ledger must record, is saved too.
+      - name: Restore mutation history
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: build/mutation-history
+          key: mutation-history-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: mutation-history-
+
+      - name: make mutation
+        run: make mutation
+
+      - name: Mutation report summary
+        if: ${{ !cancelled() }}
+        run: docker compose run --rm --no-deps app php bin/test-summary.php >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload the mutation report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: mutation-report
+          path: |
+            build/reports/infection.html
+            build/reports/mutation-trend.tsv
+            build/infection.log
+          if-no-files-found: ignore
+
+      - name: Save mutation history
+        if: ${{ !cancelled() }}
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: build/mutation-history
+          key: mutation-history-${{ github.run_id }}-${{ github.run_attempt }}
+
+  scenarios:
+    name: make ${{ matrix.target }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        target:
+          - smoke
+          - contract-smoke
+          - property-openapi-smoke
+          - specification-smoke
+          - centrifugo-smoke
+          - centrifugo-http-smoke
+          - projection-smoke
+          - redis-smoke
+          - db-adapters-smoke
+          - mcp-smoke
+          - mcp-rbac-smoke
+          - mcp-http-smoke
+          - payments-testing-smoke
+          - settings-smoke
+          - utm-smoke
+          - webhook-smoke
+          - webhook-http-smoke
+          - observability-smoke
+          - prometheus-outcomes-smoke
+          - redis-queue-smoke
+          - ui-smoke
+          - ui-full-smoke
+          - ui-browser-smoke
+          - testo-integration
+          - platform-smoke
+          - analytics-smoke
+          - analytics-roundtrip
+          - correlation-smoke
+          - simulate-maintenance
+          - simulate-network-collapse
+          - simulate-lost-reply
+          - simulate-race-condition
+          - simulate-kill-switch
+          - captcha-smoke
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v4
+        with:
+          persist-credentials: false
+
+      - name: make ${{ matrix.target }}
+        run: make "$TARGET"
+        env:
+          TARGET: ${{ matrix.target }}
+
+      - name: Container logs
+        if: ${{ failure() }}
+        run: docker compose --profile ui --profile realtime --profile analytics logs --no-color --tail=200 || true
+
+      - name: Stop the stack
+        if: ${{ always() }}
+        run: make down || true

@@ -1,0 +1,128 @@
+# Vertical slices: a context sees itself and Shared; another context only
+# along the edges listed in the ruleset. Endpoint and Bootloader compose
+# contexts on purpose (BFF reads, DI wiring) and are left out. The layer
+# rules (Domain <- Application <- Infrastructure) live in deptrac.yaml.
+parameters:
+    paths:
+        - src/
+
+deptrac:
+    layers:
+        - name: Shared
+          collectors:
+              - type: classNameRegex
+                value: '#^App\\(Domain|Application|Infrastructure)\\Shared\\#'
+              - type: classNameRegex
+                value: '#^App\\Shared\\#'
+              - type: classNameRegex
+                value: '#^App\\Environment$#'
+
+        # What Ordering publishes to the other contexts: its value objects,
+        # exceptions and domain events, the OrderingApi facade with its DTOs,
+        # and the integration events. The aggregate, the repository, the lifecycle and
+        # every adapter stay internal.
+        - name: OrderingPublic
+          collectors:
+              - type: classNameRegex
+                value: '#^App\\Domain\\Ordering\\(Amount|CustomerId|OrderId|OrderStatus|PaymentIdempotencyKey|TransitionRecord)$#'
+              - type: classNameRegex
+                value: '#^App\\Domain\\Ordering\\(Exception|Event)\\#'
+              - type: classNameRegex
+                value: '#^App\\Application\\Ordering\\(OrderingApi|GetOrder\\OrderView|ListOrders\\ListOrdersQuery)$#'
+              - type: classNameRegex
+                value: '#^App\\Application\\Ordering\\Integration\\#'
+
+        - name: Ordering
+          collectors:
+              - type: bool
+                must:
+                    - type: classNameRegex
+                      value: '#^App\\(Domain|Application|Infrastructure)\\Ordering\\#'
+                must_not:
+                    - type: classNameRegex
+                      value: '#^App\\Domain\\Ordering\\(Amount|CustomerId|OrderId|OrderStatus|PaymentIdempotencyKey|TransitionRecord)$#'
+                    - type: classNameRegex
+                      value: '#^App\\Domain\\Ordering\\(Exception|Event)\\#'
+                    - type: classNameRegex
+                      value: '#^App\\Application\\Ordering\\(OrderingApi|GetOrder\\OrderView|ListOrders\\ListOrdersQuery)$#'
+                    - type: classNameRegex
+                      value: '#^App\\Application\\Ordering\\Integration\\#'
+
+        - name: Payments
+          collectors:
+              - type: bool
+                must:
+                    - type: classNameRegex
+                      value: '#^App\\(Domain|Application|Infrastructure)\\Payments\\#'
+                must_not:
+                    - type: classNameRegex
+                      value: '#^App\\Domain\\Payments\\Event\\#'
+
+        # What Payments publishes: Ordering settles an order on these events
+        # without seeing anything else of Payments.
+        - name: PaymentsEvents
+          collectors:
+              - type: classNameRegex
+                value: '#^App\\Domain\\Payments\\Event\\#'
+
+        - name: Marketing
+          collectors:
+              - type: classNameRegex
+                value: '#^App\\(Application|Infrastructure)\\Marketing\\#'
+
+        - name: MarketingPublic
+          collectors:
+              - type: classNameRegex
+                value: '#^App\\Domain\\Marketing\\#'
+
+        - name: Analytics
+          collectors:
+              - type: classNameRegex
+                value: '#^App\\(Domain|Application|Infrastructure)\\Analytics\\#'
+
+        - name: Assistant
+          collectors:
+              - type: classNameRegex
+                value: '#^App\\(Domain|Application|Infrastructure)\\Assistant\\#'
+
+        - name: Operations
+          collectors:
+              - type: classNameRegex
+                value: '#^App\\(Domain|Application|Infrastructure)\\Operations\\#'
+
+    # Payments, Marketing, Analytics, Assistant and Operations are downstream
+    # of Ordering and see only what it publishes. Ordering hears back from
+    # Payments only through Payments' events.
+    ruleset:
+        Shared: ~
+        OrderingPublic:
+            - Shared
+            - Ordering
+        Ordering:
+            - Shared
+            - OrderingPublic
+            - PaymentsEvents
+        Payments:
+            - Shared
+            - OrderingPublic
+            - PaymentsEvents
+        PaymentsEvents:
+            - Shared
+            - OrderingPublic
+        Marketing:
+            - Shared
+            - OrderingPublic
+            - MarketingPublic
+        MarketingPublic:
+            - Shared
+            - OrderingPublic
+        Analytics:
+            - Shared
+            - OrderingPublic
+            - MarketingPublic
+        Assistant:
+            - Shared
+            - OrderingPublic
+        Operations:
+            - Shared
+            - OrderingPublic
