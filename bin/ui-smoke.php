@@ -202,8 +202,19 @@ $results[] = 'receipt=1(signed)';
 
 // The order page's backend: one answer carries the same evidence the evidence
 // endpoint gives, and no breaker once the order settled.
-$screen = json_decode((string) $client->get('/api/v1/ui/orders/' . rawurlencode($ok['order']['id']))->getBody(), true, 512, JSON_THROW_ON_ERROR);
-$evidenceNow = json_decode((string) $client->get('/api/v1/orders/' . rawurlencode($ok['order']['id']) . '/evidence')->getBody(), true, 512, JSON_THROW_ON_ERROR);
+// The ui worker keeps delivering in the background (the webhook retry), so
+// the evidence may move between two requests: compare the screen with an
+// evidence that read the same before and after it.
+$readEvidence = static fn (): array => json_decode((string) $client->get('/api/v1/orders/' . rawurlencode($ok['order']['id']) . '/evidence')->getBody(), true, 512, JSON_THROW_ON_ERROR);
+for ($attempt = 0; $attempt < 10; ++$attempt) {
+    $before = $readEvidence();
+    $screen = json_decode((string) $client->get('/api/v1/ui/orders/' . rawurlencode($ok['order']['id']))->getBody(), true, 512, JSON_THROW_ON_ERROR);
+    $evidenceNow = $readEvidence();
+    if ($before == $evidenceNow) {
+        break;
+    }
+    sleep(1);
+}
 check(($screen['evidence'] ?? null) == $evidenceNow, 'the order screen must carry the evidence endpoint\'s answer');
 check(array_key_exists('breaker', $screen) && $screen['breaker'] === null, 'a settled order\'s screen must carry no breaker');
 $results[] = 'screen=1 request';
