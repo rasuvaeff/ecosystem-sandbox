@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e565ca1f0c4d76b55221593643aea6b9",
+    "content-hash": "9e9cb79db7d72bd58394c749fc198f67",
     "packages": [
         {
             "name": "alexkart/curl-builder",
@@ -4123,16 +4123,16 @@
         },
         {
             "name": "rasuvaeff/schema",
-            "version": "v0.5.0",
+            "version": "v0.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rasuvaeff/schema.git",
-                "reference": "b56927e54b50820fb0e2466d970cb887253113d6"
+                "reference": "409d54a36b561ef5f5079c2dbc06559b4c7ea7aa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rasuvaeff/schema/zipball/b56927e54b50820fb0e2466d970cb887253113d6",
-                "reference": "b56927e54b50820fb0e2466d970cb887253113d6",
+                "url": "https://api.github.com/repos/rasuvaeff/schema/zipball/409d54a36b561ef5f5079c2dbc06559b4c7ea7aa",
+                "reference": "409d54a36b561ef5f5079c2dbc06559b4c7ea7aa",
                 "shasum": ""
             },
             "require": {
@@ -4196,7 +4196,7 @@
                 "issues": "https://github.com/rasuvaeff/schema/issues",
                 "source": "https://github.com/rasuvaeff/schema"
             },
-            "time": "2026-11-01T08:53:29+00:00"
+            "time": "2026-11-01T11:04:32+00:00"
         },
         {
             "name": "rasuvaeff/specification",

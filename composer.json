@@ -34,7 +34,7 @@
         "rasuvaeff/property-testing-openapi": "^0.19",
         "rasuvaeff/resilience": "^0.3",
         "rasuvaeff/result": "^1.0",
-        "rasuvaeff/schema": "^0.5",
+        "rasuvaeff/schema": "^0.6",
         "rasuvaeff/specification": "^1.3",
         "rasuvaeff/yii3-ab-testing": "^2.1",
         "rasuvaeff/yii3-ab-testing-clickhouse": "^2.0",

@@ -7,8 +7,8 @@ namespace App\Application\Ordering\Integration;
 use App\Application\Shared\Integration\IntegrationEvent;
 use App\Domain\Ordering\Amount;
 use App\Domain\Ordering\OrderId;
+use Rasuvaeff\Schema\Combinator\IntoSchema;
 use Rasuvaeff\Schema\Schema;
-use Rasuvaeff\Schema\SchemaInterface;
 use Rasuvaeff\Schema\Unknown;
 
 /**
@@ -44,7 +44,10 @@ final readonly class PaymentRequested implements IntegrationEvent
         return 1;
     }
 
-    public static function schema(): SchemaInterface
+    /**
+     * @return IntoSchema<self>
+     */
+    public static function schema(): IntoSchema
     {
         return Schema::object([
             'orderId' => Schema::string()->min(length: 1)->max(OrderId::MAX_LENGTH),
@@ -62,9 +65,6 @@ final readonly class PaymentRequested implements IntegrationEvent
 
     public function toPayload(): array
     {
-        /** @var array<string, mixed> $wire an object schema's wire form is the object's keys */
-        $wire = self::schema()->toWire($this);
-
-        return $wire;
+        return self::schema()->toWire($this);
     }
 }
