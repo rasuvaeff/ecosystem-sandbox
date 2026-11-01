@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ec002c688673ad621b9f57b4b7666291",
+    "content-hash": "f749df356859fb815c4abd9bf9668e78",
     "packages": [
         {
             "name": "alexkart/curl-builder",
@@ -4123,16 +4123,16 @@
         },
         {
             "name": "rasuvaeff/schema",
-            "version": "v0.4.0",
+            "version": "v1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rasuvaeff/schema.git",
-                "reference": "4128ed373f994c7f35afb1fc7262bae1ff6626e8"
+                "reference": "85aa04505af541c2643a21eaef28053632c3997a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rasuvaeff/schema/zipball/4128ed373f994c7f35afb1fc7262bae1ff6626e8",
-                "reference": "4128ed373f994c7f35afb1fc7262bae1ff6626e8",
+                "url": "https://api.github.com/repos/rasuvaeff/schema/zipball/85aa04505af541c2643a21eaef28053632c3997a",
+                "reference": "85aa04505af541c2643a21eaef28053632c3997a",
                 "shasum": ""
             },
             "require": {
@@ -4154,9 +4154,19 @@
                 "roave/backward-compatibility-check": "^8.0",
                 "testo/bridge-infection": "^0.1.6",
                 "testo/testo": "^0.10.25",
-                "vimeo/psalm": "^6.16"
+                "vimeo/psalm": "^6.16",
+                "yiisoft/validator": "^2.6"
+            },
+            "suggest": {
+                "vimeo/psalm": "Infers exact array shapes of Schema::object() via Rasuvaeff\\Schema\\Psalm\\Plugin",
+                "yiisoft/validator": "Use a schema as a yiisoft/validator rule via Rasuvaeff\\Schema\\Bridge\\YiiValidator\\SchemaRule"
             },
             "type": "library",
+            "extra": {
+                "psalm": {
+                    "pluginClass": "Rasuvaeff\\Schema\\Psalm\\Plugin"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "Rasuvaeff\\Schema\\": "src/"
@@ -4186,7 +4196,7 @@
                 "issues": "https://github.com/rasuvaeff/schema/issues",
                 "source": "https://github.com/rasuvaeff/schema"
             },
-            "time": "2026-10-11T09:00:01+00:00"
+            "time": "2026-11-01T11:29:06+00:00"
         },
         {
             "name": "rasuvaeff/specification",

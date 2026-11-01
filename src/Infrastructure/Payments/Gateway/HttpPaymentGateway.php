@@ -21,6 +21,7 @@ use Rasuvaeff\Payments\ProviderRequestInfo;
 use Rasuvaeff\Payments\RetrievePaymentRequest;
 use Rasuvaeff\Payments\SandboxCapability;
 use Rasuvaeff\Schema\Schema;
+use Rasuvaeff\Schema\Unknown;
 
 final readonly class HttpPaymentGateway implements PaymentGatewayInterface
 {
@@ -126,7 +127,7 @@ final readonly class HttpPaymentGateway implements PaymentGatewayInterface
             'state' => Schema::string(),
             'amountCents' => Schema::int()->min(value: 0),
             'reference' => Schema::string()->min(length: 1)->max(length: 255),
-        ])->strip()->parse(input: $this->decoded(response: $this->client->sendRequest(new Request(
+        ], unknown: Unknown::Strip)->parse(input: $this->decoded(response: $this->client->sendRequest(new Request(
             method: 'GET',
             uri: $this->baseUrl . '/payments/' . rawurlencode($request->payment->id),
             headers: ['Accept' => 'application/json'],
@@ -134,8 +135,7 @@ final readonly class HttpPaymentGateway implements PaymentGatewayInterface
         if (!$parsed->ok) {
             throw new \RuntimeException(message: 'Payment gateway returned an unreadable payment');
         }
-        /** @var array{state: string, amountCents: int<0, max>, reference: non-empty-string} $payment */
-        $payment = $parsed->value;
+        $payment = $parsed->orThrow();
         $now = $this->clock->now();
         $charged = $payment['state'] === 'succeeded';
 

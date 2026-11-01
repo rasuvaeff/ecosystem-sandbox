@@ -7,6 +7,7 @@ namespace App\Application\Ordering\Integration;
 use App\Domain\Ordering\OrderId;
 use Rasuvaeff\Schema\Schema;
 use Rasuvaeff\Schema\SchemaInterface;
+use Rasuvaeff\Schema\Unknown;
 
 /**
  * The payment was declined or given up; the order is failed.
@@ -30,7 +31,7 @@ final readonly class OrderPaymentFailed implements OrderResultEvent
 
     public static function schema(): SchemaInterface
     {
-        return Schema::object(['orderId' => Schema::string()->min(length: 1)->max(OrderId::MAX_LENGTH)])->strip()->into(self::class);
+        return Schema::object(['orderId' => Schema::string()->min(length: 1)->max(OrderId::MAX_LENGTH)], unknown: Unknown::Strip)->into(self::class);
     }
 
     public function aggregateId(): string

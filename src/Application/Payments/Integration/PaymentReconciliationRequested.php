@@ -8,6 +8,7 @@ use App\Application\Shared\Integration\IntegrationEvent;
 use App\Domain\Ordering\OrderId;
 use Rasuvaeff\Schema\Schema;
 use Rasuvaeff\Schema\SchemaInterface;
+use Rasuvaeff\Schema\Unknown;
 
 /**
  * The payment of an order was given up without an answer from the bank:
@@ -33,7 +34,7 @@ final readonly class PaymentReconciliationRequested implements IntegrationEvent
 
     public static function schema(): SchemaInterface
     {
-        return Schema::object(['orderId' => Schema::string()->min(length: 1)->max(OrderId::MAX_LENGTH)])->strip()->into(self::class);
+        return Schema::object(['orderId' => Schema::string()->min(length: 1)->max(OrderId::MAX_LENGTH)], unknown: Unknown::Strip)->into(self::class);
     }
 
     public function aggregateId(): string

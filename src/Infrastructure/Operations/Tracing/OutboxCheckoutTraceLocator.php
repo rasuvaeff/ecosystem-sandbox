@@ -9,6 +9,7 @@ use App\Application\Ordering\Integration\PaymentRequested;
 use App\Domain\Ordering\OrderId;
 use App\Domain\Shared\TableNames;
 use Rasuvaeff\Schema\Schema;
+use Rasuvaeff\Schema\Unknown;
 use Yiisoft\Db\Connection\ConnectionInterface;
 use Yiisoft\Db\Query\Query;
 
@@ -32,11 +33,9 @@ final readonly class OutboxCheckoutTraceLocator implements CheckoutTraceLocator
         if (!is_string($payload)) {
             return false;
         }
-        $parsed = Schema::object(['trace' => Schema::object(['traceparent' => Schema::string()])->strip()])->strip()
-            ->parse(input: json_decode(json: $payload, associative: true));
-        /** @var array{trace: array{traceparent: string}} $value */
-        $value = $parsed->value;
+        $parsed = Schema::object(['trace' => Schema::object(['traceparent' => Schema::string()], unknown: Unknown::Strip)], unknown: Unknown::Strip)
+            ->parseJson($payload);
 
-        return $parsed->ok && preg_match(pattern: self::TRACEPARENT, subject: $value['trace']['traceparent'], matches: $match) === 1 ? $match[1] : null;
+        return $parsed->ok && preg_match(pattern: self::TRACEPARENT, subject: $parsed->orThrow()['trace']['traceparent'], matches: $match) === 1 ? $match[1] : null;
     }
 }
