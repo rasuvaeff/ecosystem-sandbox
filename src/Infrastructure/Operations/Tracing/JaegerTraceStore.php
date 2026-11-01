@@ -13,6 +13,7 @@ use Rasuvaeff\Context\ContextException;
 use Rasuvaeff\Context\Http\ContextClient;
 use Rasuvaeff\Schema\Schema;
 use Rasuvaeff\Schema\Type\ObjectSchema;
+use Rasuvaeff\Schema\Unknown;
 
 /**
  * Jaeger's query API, called through rasuvaeff/context-http's ContextClient:
@@ -46,7 +47,7 @@ final readonly class JaegerTraceStore implements TraceStore
                 'GET',
                 Environment::string(name: 'JAEGER_URL', default: 'http://jaeger:16686') . '/api/traces/' . $traceId,
             ), $budget);
-            $parsed = $this->answerSchema()->parse(input: json_decode(json: (string) $answer->getBody(), associative: true));
+            $parsed = $this->answerSchema()->parseJson((string) $answer->getBody());
         } catch (ContextException $exhausted) {
             // RequestBudget answers 504: the caller's time is up.
             throw $exhausted;
@@ -121,18 +122,18 @@ final readonly class JaegerTraceStore implements TraceStore
             'references' => Schema::arrayOf(Schema::object([
                 'refType' => Schema::string(),
                 'spanID' => Schema::string(),
-            ])->strip())->optional(),
+            ], unknown: Unknown::Strip))->optional(),
             'tags' => Schema::arrayOf(Schema::object([
                 'key' => Schema::string(),
                 'value' => Schema::union([Schema::string(), Schema::int(), Schema::float(), Schema::bool()]),
-            ])->strip())->optional(),
-        ])->strip();
+            ], unknown: Unknown::Strip))->optional(),
+        ], unknown: Unknown::Strip);
 
         return Schema::object([
             'data' => Schema::arrayOf(Schema::object([
                 'spans' => Schema::arrayOf($span),
-                'processes' => Schema::mapOf(Schema::object(['serviceName' => Schema::string()])->strip()),
-            ])->strip()),
-        ])->strip();
+                'processes' => Schema::mapOf(Schema::object(['serviceName' => Schema::string()], unknown: Unknown::Strip)),
+            ], unknown: Unknown::Strip)),
+        ], unknown: Unknown::Strip);
     }
 }

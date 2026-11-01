@@ -6,6 +6,7 @@ namespace App\Application\Shared\Integration;
 
 use App\Application\Shared\Integration\Exception\InvalidIntegrationEvent;
 use App\Application\Shared\Integration\Exception\UnknownIntegrationEvent;
+use Rasuvaeff\Schema\SchemaException;
 
 /**
  * Every integration event the application exchanges, keyed by outbox type,
@@ -43,15 +44,15 @@ final readonly class IntegrationEventRegistry
         $event = $this->events[$type] ?? throw new UnknownIntegrationEvent(type: $type);
 
         try {
-            $parsed = $event::schema()->parse(input: json_decode(json: $payload, associative: true, flags: JSON_THROW_ON_ERROR));
-        } catch (\JsonException $exception) {
+            $parsed = $event::schema()->parseJson($payload)->orThrow();
+        } catch (SchemaException $exception) {
             throw new InvalidIntegrationEvent(type: $type, previous: $exception);
         }
-        if (!$parsed->ok || !$parsed->value instanceof $event) {
+        if (!$parsed instanceof $event) {
             throw new InvalidIntegrationEvent(type: $type);
         }
 
-        return $parsed->value;
+        return $parsed;
     }
 
     /**

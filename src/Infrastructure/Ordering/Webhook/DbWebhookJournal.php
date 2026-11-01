@@ -10,6 +10,7 @@ use App\Environment;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Rasuvaeff\Schema\Schema;
+use Rasuvaeff\Schema\Unknown;
 use Rasuvaeff\Yii3OutboxWebhooksBridge\UrlMasker;
 use Yiisoft\Db\Connection\ConnectionInterface;
 use Yiisoft\Db\Query\Query;
@@ -65,10 +66,8 @@ final readonly class DbWebhookJournal implements WebhookJournal
             // records still stand on their own.
             return null;
         }
-        $parsed = Schema::object(['received' => Schema::arrayOf(Schema::json())])->strip()->parse(input: json_decode(json: (string) $answer->getBody(), associative: true));
-        /** @var array{received: list<mixed>} $value */
-        $value = $parsed->value;
+        $parsed = Schema::object(['received' => Schema::arrayOf(Schema::json())], unknown: Unknown::Strip)->parseJson((string) $answer->getBody());
 
-        return $parsed->ok ? $value['received'] : null;
+        return $parsed->ok ? $parsed->orThrow()['received'] : null;
     }
 }

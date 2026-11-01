@@ -11,6 +11,7 @@ use App\Application\Operations\GetTestReport\TestCaseReport;
 use App\Application\Operations\GetTestReport\TestClassReport;
 use App\Application\Operations\GetTestReport\TestReports;
 use Rasuvaeff\Schema\Schema;
+use Rasuvaeff\Schema\Unknown;
 
 /**
  * Reads what the tools wrote under build/: testo's JUnit reports
@@ -77,10 +78,10 @@ final readonly class FileTestReports implements TestReports
                 'mutatorName' => Schema::string(),
                 'originalFilePath' => Schema::string(),
                 'originalStartLine' => Schema::int(),
-            ])->strip(),
+            ], unknown: Unknown::Strip),
             'diff' => Schema::string(),
             'processOutput' => Schema::string(),
-        ])->strip();
+        ], unknown: Unknown::Strip);
         $parsed = Schema::object([
             'stats' => Schema::object([
                 'totalMutantsCount' => Schema::int()->min(value: 0),
@@ -90,16 +91,15 @@ final readonly class FileTestReports implements TestReports
                 'notCoveredCount' => Schema::int()->min(value: 0),
                 'timeOutCount' => Schema::int()->min(value: 0),
                 'msi' => Schema::float()->allowInt(),
-            ])->strip(),
+            ], unknown: Unknown::Strip),
             'killed' => Schema::arrayOf($mutant),
             'escaped' => Schema::arrayOf($mutant),
             'uncovered' => Schema::arrayOf($mutant),
-        ])->strip()->parse(input: json_decode(json: $contents, associative: true));
+        ], unknown: Unknown::Strip)->parseJson($contents);
         if (!$parsed->ok) {
             return null;
         }
-        /** @var array{stats: array{totalMutantsCount: int<0, max>, killedCount: int<0, max>, killedByStaticAnalysisCount: int<0, max>, escapedCount: int<0, max>, notCoveredCount: int<0, max>, timeOutCount: int<0, max>, msi: float|int}, killed: list<array{mutator: array{mutatorName: string, originalFilePath: string, originalStartLine: int}, diff: string, processOutput: string}>, escaped: list<array{mutator: array{mutatorName: string, originalFilePath: string, originalStartLine: int}, diff: string, processOutput: string}>, uncovered: list<array{mutator: array{mutatorName: string, originalFilePath: string, originalStartLine: int}, diff: string, processOutput: string}>} $log */
-        $log = $parsed->value;
+        $log = $parsed->orThrow();
 
         // Per source file: planted bugs the tests caught and the ones they missed.
         /** @var array<string, int> $caught */
@@ -156,7 +156,7 @@ final readonly class FileTestReports implements TestReports
             total: $stats['totalMutantsCount'],
             caught: $stats['killedCount'] + $stats['killedByStaticAnalysisCount'] + $stats['timeOutCount'],
             missed: $stats['escapedCount'] + $stats['notCoveredCount'],
-            msi: (float) $stats['msi'],
+            msi: $stats['msi'],
             minMsi: $this->minMsi(),
             files: $files,
             examples: array_values($examples),
@@ -224,13 +224,12 @@ final readonly class FileTestReports implements TestReports
             return [];
         }
         $parsed = Schema::object([
-            'failures' => Schema::arrayOf(Schema::object(['test' => Schema::string()])->strip()),
-        ])->strip()->parse(input: json_decode(json: substr($output, offset: $start), associative: true));
+            'failures' => Schema::arrayOf(Schema::object(['test' => Schema::string()], unknown: Unknown::Strip)),
+        ], unknown: Unknown::Strip)->parseJson(substr($output, offset: $start));
         if (!$parsed->ok) {
             return [];
         }
-        /** @var array{failures: list<array{test: string}>} $run */
-        $run = $parsed->value;
+        $run = $parsed->orThrow();
         $tests = [];
         foreach ($run['failures'] as $failure) {
             $name = preg_replace(pattern: '/(:\d+)+$/', replacement: '', subject: $failure['test']) ?? $failure['test'];

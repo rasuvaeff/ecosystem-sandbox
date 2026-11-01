@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Infrastructure\Shared\Audit;
 
 use Rasuvaeff\Schema\Schema;
+use Rasuvaeff\Schema\Unknown;
 
 /**
  * The `changes` column of an `audit_log` row (yii3-audit-log-db stores the
@@ -22,12 +23,11 @@ final class AuditChangeSet
             'field' => Schema::string(),
             'old' => Schema::json()->optional(),
             'new' => Schema::json()->optional(),
-        ])->strip())->parse(input: json_decode(json: $json, associative: true));
+        ], unknown: Unknown::Strip))->parseJson($json);
         if (!$parsed->ok) {
             return [];
         }
-        /** @var list<array{field: string, old?: mixed, new?: mixed}> $changes */
-        $changes = $parsed->value;
+        $changes = $parsed->orThrow();
 
         return array_map(
             callback: static fn (array $change): array => ['field' => $change['field'], 'old' => $change['old'] ?? null, 'new' => $change['new'] ?? null],

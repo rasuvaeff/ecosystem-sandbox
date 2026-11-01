@@ -7,6 +7,7 @@ namespace App\Tests\Unit\Application\Shared;
 use App\Application\Ordering\Integration\OrderPaid;
 use App\Application\Ordering\Integration\OrderPaymentFailed;
 use App\Application\Ordering\Integration\PaymentRequested;
+use App\Application\Payments\Integration\PaymentReconciliationRequested;
 use App\Application\Shared\Integration\Exception\InvalidIntegrationEvent;
 use App\Application\Shared\Integration\Exception\UnknownIntegrationEvent;
 use App\Application\Shared\Integration\IntegrationEvent;
@@ -23,6 +24,8 @@ use Rasuvaeff\PropertyTesting\ArbitraryInterface;
 use Rasuvaeff\PropertyTesting\Classify;
 use Rasuvaeff\PropertyTesting\Gen;
 use Rasuvaeff\PropertyTesting\Property;
+use Rasuvaeff\Schema\SchemaException;
+use Rasuvaeff\Schema\Testing\RoundTrip;
 use Rasuvaeff\Understudy\Arg;
 use Rasuvaeff\Understudy\Invocation;
 use Rasuvaeff\Understudy\Understudy;
@@ -47,6 +50,7 @@ use function Rasuvaeff\Understudy\when;
 #[Covers(PaymentRequested::class)]
 #[Covers(OrderPaid::class)]
 #[Covers(OrderPaymentFailed::class)]
+#[Covers(PaymentReconciliationRequested::class)]
 final class IntegrationEventContractTest
 {
     /**
@@ -119,12 +123,37 @@ final class IntegrationEventContractTest
         $tooLong = Gen::stringOf(minLength: OrderId::MAX_LENGTH + 1, maxLength: 100);
 
         return [
-            'type' => Gen::elements([PaymentRequested::type(), OrderPaid::type(), OrderPaymentFailed::type()]),
+            'type' => Gen::elements([PaymentRequested::type(), OrderPaid::type(), OrderPaymentFailed::type(), PaymentReconciliationRequested::type()]),
             'payload' => Gen::frequency([
                 [1, Gen::elements([[], ['orderId' => ''], ['orderId' => 7], ['order' => 'o-1']])],
                 [1, Gen::map($tooLong, static fn (string $id): array => ['orderId' => $id, 'amountCents' => 1, 'gatewayIdempotencyKey' => 'k'])],
             ]),
         ];
+    }
+
+    /**
+     * The payload is the schema's wire form: any event the schema can
+     * produce goes to the wire and back unchanged, and through JSON and the
+     * registry it is read back with the same payload.
+     *
+     * @param class-string<IntegrationEvent> $event
+     */
+    #[Property(runs: 200)]
+    public function anEventIsItsSchemasWireForm(string $event): void
+    {
+        $schema = $event::schema();
+        $instance = Gen::draw($schema->arbitrary());
+        RoundTrip::assertWireRoundTrip($schema, $instance);
+        \assert($instance instanceof IntegrationEvent);
+        $wire = json_encode(value: $instance->toPayload(), flags: JSON_THROW_ON_ERROR);
+        $read = IntegrationEvents::registry()->parse(type: $event::type(), payload: $wire);
+        Assert::same(json_encode(value: $read->toPayload(), flags: JSON_THROW_ON_ERROR), $wire);
+    }
+
+    /** @return array<string, ArbitraryInterface> */
+    public static function anEventIsItsSchemasWireFormGenerators(): array
+    {
+        return ['event' => Gen::elements(IntegrationEvents::registry()->events())];
     }
 
     public function aRequestedPaymentNeedsItsAmountAndKey(): void
@@ -139,10 +168,10 @@ final class IntegrationEventContractTest
         }
     }
 
-    /** One character is an order id; the result events read it. */
+    /** One character is an order id; the result and reconciliation events read it. */
     public function aResultOfAOneCharacterOrderIsRead(): void
     {
-        foreach ([OrderPaid::type(), OrderPaymentFailed::type()] as $type) {
+        foreach ([OrderPaid::type(), OrderPaymentFailed::type(), PaymentReconciliationRequested::type()] as $type) {
             Assert::same(IntegrationEvents::registry()->parse(type: $type, payload: '{"orderId":"a"}')->aggregateId(), expected: 'a');
         }
     }
@@ -160,7 +189,9 @@ final class IntegrationEventContractTest
             IntegrationEvents::registry()->parse(type: OrderPaid::type(), payload: '{"orderId":');
             Assert::fail(message: 'Malformed JSON must be refused');
         } catch (InvalidIntegrationEvent $malformed) {
-            Assert::instanceOf($malformed->getPrevious(), \JsonException::class);
+            $cause = $malformed->getPrevious();
+            Assert::instanceOf($cause, SchemaException::class);
+            Assert::string($cause->getMessage())->contains('Invalid JSON');
         }
     }
 

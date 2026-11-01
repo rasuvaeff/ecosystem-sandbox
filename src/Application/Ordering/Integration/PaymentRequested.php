@@ -9,6 +9,7 @@ use App\Domain\Ordering\Amount;
 use App\Domain\Ordering\OrderId;
 use Rasuvaeff\Schema\Schema;
 use Rasuvaeff\Schema\SchemaInterface;
+use Rasuvaeff\Schema\Unknown;
 
 /**
  * An order wants its money taken. Recorded with the transition to
@@ -51,7 +52,7 @@ final readonly class PaymentRequested implements IntegrationEvent
             'gatewayIdempotencyKey' => Schema::string()->min(length: 1)->max(length: 128),
             'correlationId' => Schema::nullable(Schema::string()->max(length: 128))->optional(),
             'trace' => Schema::mapOf(Schema::json())->optional(),
-        ])->strip()->into(self::class);
+        ], unknown: Unknown::Strip)->into(self::class);
     }
 
     public function aggregateId(): string
@@ -61,12 +62,9 @@ final readonly class PaymentRequested implements IntegrationEvent
 
     public function toPayload(): array
     {
-        return [
-            'orderId' => $this->orderId,
-            'amountCents' => $this->amountCents,
-            'gatewayIdempotencyKey' => $this->gatewayIdempotencyKey,
-            'correlationId' => $this->correlationId,
-            'trace' => $this->trace,
-        ];
+        /** @var array<string, mixed> $wire an object schema's wire form is the object's keys */
+        $wire = self::schema()->toWire($this);
+
+        return $wire;
     }
 }
