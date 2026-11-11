@@ -27,8 +27,8 @@ services:
     environment:
       COLLECTOR_OTLP_ENABLED: 'true'
     ports:
-      - "${JAEGER_UI_PORT:-16686}:16686"
-      - "4318:4318"
+      - "${JAEGER_UI_PORT:-17686}:16686"
+      - "${OTLP_PORT:-17318}:4318"
 
   prometheus:
     image: prom/prometheus:v3.7.2
@@ -38,7 +38,7 @@ services:
     volumes:
       - ./docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
     ports:
-      - "${PROMETHEUS_PORT:-9090}:9090"
+      - "${PROMETHEUS_PORT:-17090}:9090"
 
   clickhouse:
     image: clickhouse/clickhouse-server:24.8-alpine
@@ -48,7 +48,7 @@ services:
       CLICKHOUSE_USER: sandbox
       CLICKHOUSE_PASSWORD: sandbox
     ports:
-      - "${CLICKHOUSE_PORT:-18123}:8123"
+      - "${CLICKHOUSE_PORT:-17123}:8123"
     healthcheck:
       test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:8123/ping | grep -q Ok"]
       interval: 5s
@@ -70,7 +70,7 @@ services:
       - ./docker/grafana/provisioning:/etc/grafana/provisioning:ro
       - ./docker/grafana/dashboards:/var/lib/grafana/dashboards:ro
     ports:
-      - "${GRAFANA_PORT:-13000}:3000"
+      - "${GRAFANA_PORT:-17300}:3000"
     # Without a health check `--wait` returned while Grafana was still
     # starting, and the analytics page reported it as not running.
     healthcheck:
@@ -116,10 +116,10 @@ services:
       OTEL_SERVICE_NAME: rasuvaeff-sandbox
       OTEL_PHP_FIBERS_ENABLED: 'true'
       # Host ports the browser must dial; /ui/ports.json hands them to the pages.
-      CENTRIFUGO_PUBLIC_PORT: ${CENTRIFUGO_PORT:-8000}
-      JAEGER_UI_PORT: ${JAEGER_UI_PORT:-16686}
-      PROMETHEUS_PORT: ${PROMETHEUS_PORT:-9090}
-      GRAFANA_PORT: ${GRAFANA_PORT:-13000}
+      CENTRIFUGO_PUBLIC_PORT: ${CENTRIFUGO_PORT:-17000}
+      JAEGER_UI_PORT: ${JAEGER_UI_PORT:-17686}
+      PROMETHEUS_PORT: ${PROMETHEUS_PORT:-17090}
+      GRAFANA_PORT: ${GRAFANA_PORT:-17300}
       OTEL_EXPORTER_OTLP_ENDPOINT: http://jaeger:4318
       MCP_ENDPOINT_SECRET: ${MCP_ENDPOINT_SECRET:-sandbox-mcp-secret}
       MCP_USER_ID: ${MCP_USER_ID:-demo-user}
@@ -131,7 +131,7 @@ services:
       - .:/workspace/sandbox
     working_dir: /workspace/sandbox
     ports:
-      - "${APP_PORT:-8080}:8080"
+      - "${APP_PORT:-17080}:8080"
     # Migrations run before the server: flags and settings live in tables the
     # container reads on every request, and on a fresh volume the first
     # request (the health check included) would otherwise be a 500.
@@ -203,7 +203,7 @@ services:
       - .:/workspace/sandbox:ro
     working_dir: /workspace/sandbox
     ports:
-      - "${PAYMENT_MOCK_PORT:-8081}:8081"
+      - "${PAYMENT_MOCK_PORT:-17081}:8081"
     command: >-
       php -S 0.0.0.0:8081 -t mock-payment mock-payment/index.php
     healthcheck:
@@ -223,7 +223,7 @@ services:
       - .:/workspace/sandbox:ro
     working_dir: /workspace/sandbox
     ports:
-      - "${WEBHOOK_MOCK_PORT:-8082}:8082"
+      - "${WEBHOOK_MOCK_PORT:-17082}:8082"
     command: >-
       php -S 0.0.0.0:8082 -t mock-webhook mock-webhook/index.php
     healthcheck:
@@ -247,7 +247,7 @@ services:
     # network: with the API on 8000, anyone reaching the host could forge an
     # order status with the committed key.
     ports:
-      - "${CENTRIFUGO_PORT:-8000}:8000"
+      - "${CENTRIFUGO_PORT:-17000}:8000"
     healthcheck:
       test: ["CMD", "wget", "-qO-", "http://127.0.0.1:9000/health"]
       interval: 3s

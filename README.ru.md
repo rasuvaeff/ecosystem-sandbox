@@ -47,7 +47,7 @@ worker и гасит стек обратно.
 ## Веб-интерфейс
 
 ```bash
-make ui        # затем открыть http://127.0.0.1:8080
+make ui        # затем открыть http://127.0.0.1:17080
 make ui-full   # то же плюс аналитика ClickHouse и Grafana
 make ui-down
 ```
@@ -174,7 +174,7 @@ checkout никогда не перезапускает заказ не в ст�
 | `GET /api/v1/agent/transcript` | разговор по MCP внутри процесса: агент с правами и без, вместе с записанными им строками аудита |
 | `GET /`, `GET /ui/` | веб-интерфейс (только встроенный сервер) |
 | `GET /api/v1/tenant` | tenant, разрешённый из `X-Tenant-Id` |
-| `POST /mcp` | MCP Streamable HTTP за shared secret (`X-Mcp-Secret`, `MCP_ENDPOINT_SECRET`); настоящий ассистент подключается командой `claude mcp add --transport http sandbox http://127.0.0.1:8080/mcp --header "X-Mcp-Secret: sandbox-mcp-secret"` и получает `order.status`, `order.timeline`, `payment.gateway_status` |
+| `POST /mcp` | MCP Streamable HTTP за shared secret (`X-Mcp-Secret`, `MCP_ENDPOINT_SECRET`); настоящий ассистент подключается командой `claude mcp add --transport http sandbox http://127.0.0.1:17080/mcp --header "X-Mcp-Secret: sandbox-mcp-secret"` и получает `order.status`, `order.timeline`, `payment.gateway_status` |
 
 HTTP-контракт генерируется `yiisoft/yii-swagger` из swagger-php-атрибутов
 экшенов (`#[OA\Get]`/`#[OA\Post]` на каждом `src/Endpoint/Rest/**/Action.php`,
@@ -289,8 +289,8 @@ status codes, заголовки и тела ответов — это дела�
 ## Observability
 
 - `/metrics` — exposition `yii3-metrics` + `yii3-metrics-prometheus`;
-- Jaeger UI — `http://127.0.0.1:16686`, OTLP/HTTP на порт `4318`;
-- Prometheus — `http://127.0.0.1:9090`;
+- Jaeger UI — `http://127.0.0.1:17686`, OTLP/HTTP на порт `17318`;
+- Prometheus — `http://127.0.0.1:17090`;
 - бизнес-счётчик `sandbox_payment_outcomes_total{outcome="paid|failed|rejected|abandoned|recovered"}`
   пишет worker, он не выводится из HTTP-статусов;
 - `observability-smoke` дополнительно проверяет, что чувствительные атрибуты не
@@ -300,8 +300,9 @@ status codes, заголовки и тела ответов — это дела�
 
 | Переменная | По умолчанию | Эффект |
 |---|---|---|
-| `APP_PORT` | `8080` | опубликованный порт приложения; интерфейс работает с любого порта хоста и по имени в локальной сети (Centrifugo принимает любой origin) |
-| `CENTRIFUGO_PORT`, `JAEGER_UI_PORT`, `PROMETHEUS_PORT`, `GRAFANA_PORT`, `CLICKHOUSE_PORT` | `8000`, `16686`, `9090`, `13000`, `18123` | опубликованные порты побочных сервисов; порты Jaeger, Prometheus и Grafana страницы узнают из `/ui/ports.json`, адрес WebSocket (Centrifugo) приходит вместе с realtime-токеном. Publish API Centrifugo слушает внутренний порт 9000 и наружу не публикуется |
+| `APP_PORT` | `17080` | опубликованный порт приложения; интерфейс работает с любого порта хоста и по имени в локальной сети (Centrifugo принимает любой origin) |
+| `CENTRIFUGO_PORT`, `JAEGER_UI_PORT`, `PROMETHEUS_PORT`, `GRAFANA_PORT`, `CLICKHOUSE_PORT` | `17000`, `17686`, `17090`, `17300`, `17123` | опубликованные порты побочных сервисов; порты Jaeger, Prometheus и Grafana страницы узнают из `/ui/ports.json`, адрес WebSocket (Centrifugo) приходит вместе с realtime-токеном. Publish API Centrifugo слушает внутренний порт 9000 и наружу не публикуется |
+| `PAYMENT_MOCK_PORT`, `WEBHOOK_MOCK_PORT`, `OTLP_PORT` | `17081`, `17082`, `17318` | порты хоста для заглушек платежей и вебхуков и для приёма OTLP/HTTP в Jaeger (контейнеры общаются между собой по внутренним портам) |
 | `OUTBOX_RETRY_DELAY_SECONDS` | `0` (`10` у `ui`-worker) | пауза между попытками outbox — и для оплат, и для доставки результатов |
 | `RESULT_SINKS` | `centrifugo` (`centrifugo,webhooks,receipts` в `make ui`, плюс `clickhouse` в `make ui-full`) | подписчики разносчика результатов, перечисляются явно |
 | `FILES_SIGNING_KEY` | встроенное демо-значение | подписывает ссылки на скачивание чеков (не короче 32 байт) |
@@ -309,7 +310,7 @@ status codes, заголовки и тела ответов — это дела�
 | `AB_AGGREGATE_SECRET`, `AB_COOKIE_SECRET`, `AB_RECEIPT_SECRET` | встроенные демо-значения | псевдонимные aggregate id в outbox, подпись cookie закреплённого варианта, подпись квитанции о показе |
 | `CENTRIFUGO_TOKEN_SECRET` | встроенное демо-значение | подписывает токен подключения браузера (не короче 32 байт); compose передаёт одно значение и приложению, и Centrifugo |
 | `CAPTCHA_ENABLED`, `RECAPTCHA_SITE_KEY`, `RECAPTCHA_SECRET`, `RECAPTCHA_VERIFY_URL` | `false`, тестовые ключи Google v2, siteverify Google | опциональный reCAPTCHA-гейт на checkout (`X-Captcha-Token`); выключен по умолчанию: проверке нужен интернет, и любой скриптовый checkout её бы не прошёл |
-| `APP_PUBLIC_URL` | `http://127.0.0.1:8080` | база canonical- и Open Graph-адресов UI-страниц (yii3-seo) |
+| `APP_PUBLIC_URL` | `http://127.0.0.1:17080` | база canonical- и Open Graph-адресов UI-страниц (yii3-seo) |
 | `APP_INDEXABLE` | `false` | `true` пускает краулеров через `/robots.txt`; не включать до осознанного развёртывания |
 | `PAYMENTS_ENABLED` | `true` | первое значение флага, data-миграция (`migrate:up`) засевает его в `feature_flags`; дальше решает таблица (и `/admin/flags`) — `false` превращает checkout в RFC 9457 503 |
 | `MAINTENANCE_ENABLED` | `false` | `true` даёт 503 с `Retry-After` вне health-путей |

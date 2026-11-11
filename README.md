@@ -48,7 +48,7 @@ once.
 ## Web UI
 
 ```bash
-make ui        # then open http://127.0.0.1:8080
+make ui        # then open http://127.0.0.1:17080
 make ui-full   # the same plus ClickHouse analytics and Grafana
 make ui-down
 ```
@@ -175,7 +175,7 @@ never restarts a non-`pending` order.
 | `GET /api/v1/agent/transcript` | an in-process MCP conversation by a permitted and an unpermitted agent, with the audit rows it wrote |
 | `GET /`, `GET /ui/` | web UI (built-in server only) |
 | `GET /api/v1/tenant` | tenant resolved from `X-Tenant-Id` |
-| `POST /mcp` | MCP Streamable HTTP endpoint behind a shared secret (`X-Mcp-Secret`, `MCP_ENDPOINT_SECRET`); a real assistant connects with `claude mcp add --transport http sandbox http://127.0.0.1:8080/mcp --header "X-Mcp-Secret: sandbox-mcp-secret"` and gets `order.status`, `order.timeline`, `payment.gateway_status` |
+| `POST /mcp` | MCP Streamable HTTP endpoint behind a shared secret (`X-Mcp-Secret`, `MCP_ENDPOINT_SECRET`); a real assistant connects with `claude mcp add --transport http sandbox http://127.0.0.1:17080/mcp --header "X-Mcp-Secret: sandbox-mcp-secret"` and gets `order.status`, `order.timeline`, `payment.gateway_status` |
 
 The HTTP contract is generated from the actions' swagger-php attributes
 (`#[OA\Get]`/`#[OA\Post]` on each `src/Endpoint/Rest/**/Action.php`, schemas in
@@ -291,8 +291,8 @@ status codes, headers or response bodies — `openapi-contract` does.
 ## Observability
 
 - `/metrics` — `yii3-metrics` + `yii3-metrics-prometheus` exposition;
-- Jaeger UI — `http://127.0.0.1:16686`, OTLP/HTTP to port `4318`;
-- Prometheus — `http://127.0.0.1:9090`;
+- Jaeger UI — `http://127.0.0.1:17686`, OTLP/HTTP to port `17318`;
+- Prometheus — `http://127.0.0.1:17090`;
 - business counter `sandbox_payment_outcomes_total{outcome="paid|failed|rejected|abandoned|recovered"}`
   is written by the worker, not derived from HTTP status codes;
 - `observability-smoke` also asserts that no sensitive attribute reaches a span.
@@ -301,8 +301,9 @@ status codes, headers or response bodies — `openapi-contract` does.
 
 | Variable | Default | Effect |
 |---|---|---|
-| `APP_PORT` | `8080` | published application port; the UI works from any host port or LAN hostname (Centrifugo accepts any origin) |
-| `CENTRIFUGO_PORT`, `JAEGER_UI_PORT`, `PROMETHEUS_PORT`, `GRAFANA_PORT`, `CLICKHOUSE_PORT` | `8000`, `16686`, `9090`, `13000`, `18123` | published ports of the side services; the pages learn the Jaeger, Prometheus and Grafana ports from `/ui/ports.json`, and the WebSocket address (Centrifugo) comes with the realtime token. Centrifugo's publish API listens on the internal port 9000 and is never published |
+| `APP_PORT` | `17080` | published application port; the UI works from any host port or LAN hostname (Centrifugo accepts any origin) |
+| `CENTRIFUGO_PORT`, `JAEGER_UI_PORT`, `PROMETHEUS_PORT`, `GRAFANA_PORT`, `CLICKHOUSE_PORT` | `17000`, `17686`, `17090`, `17300`, `17123` | published ports of the side services; the pages learn the Jaeger, Prometheus and Grafana ports from `/ui/ports.json`, and the WebSocket address (Centrifugo) comes with the realtime token. Centrifugo's publish API listens on the internal port 9000 and is never published |
+| `PAYMENT_MOCK_PORT`, `WEBHOOK_MOCK_PORT`, `OTLP_PORT` | `17081`, `17082`, `17318` | host ports of the payment and webhook mocks and of Jaeger's OTLP/HTTP receiver (containers talk to each other on the internal ports) |
 | `OUTBOX_RETRY_DELAY_SECONDS` | `0` (`10` for the `ui` worker) | pause between outbox attempts, for payments and for result delivery alike |
 | `RESULT_SINKS` | `centrifugo` (`centrifugo,webhooks,receipts` for `make ui`, plus `clickhouse` for `make ui-full`) | subscribers of the result fan-out, named explicitly |
 | `FILES_SIGNING_KEY` | built-in demo value | signs receipt download URLs (at least 32 bytes) |
@@ -310,7 +311,7 @@ status codes, headers or response bodies — `openapi-contract` does.
 | `AB_AGGREGATE_SECRET`, `AB_COOKIE_SECRET`, `AB_RECEIPT_SECRET` | built-in demo values | pseudonymous outbox aggregate ids, the sticky-variant cookie signature, the exposure receipt signature |
 | `CENTRIFUGO_TOKEN_SECRET` | built-in demo value | signs the browser's connection token (at least 32 bytes); compose hands the same value to the app and to Centrifugo |
 | `CAPTCHA_ENABLED`, `RECAPTCHA_SITE_KEY`, `RECAPTCHA_SECRET`, `RECAPTCHA_VERIFY_URL` | `false`, Google's v2 test keys, Google's siteverify | the opt-in reCAPTCHA gate on the checkout (`X-Captcha-Token`); off by default because the check needs the internet and every scripted checkout would fail it |
-| `APP_PUBLIC_URL` | `http://127.0.0.1:8080` | base of the UI pages' canonical and Open Graph URLs (yii3-seo) |
+| `APP_PUBLIC_URL` | `http://127.0.0.1:17080` | base of the UI pages' canonical and Open Graph URLs (yii3-seo) |
 | `APP_INDEXABLE` | `false` | `true` lets crawlers in through `/robots.txt`; leave it off until a deliberate deployment |
 | `PAYMENTS_ENABLED` | `true` | the flag's first value, seeded into `feature_flags` by a data migration (`migrate:up`); afterwards the table (and `/admin/flags`) decides — `false` turns checkout into an RFC 9457 503 |
 | `MAINTENANCE_ENABLED` | `false` | `true` returns 503 with `Retry-After` outside health paths |

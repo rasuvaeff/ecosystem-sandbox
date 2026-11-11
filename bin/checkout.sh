@@ -4,7 +4,7 @@ set -euo pipefail
 # One checkout against the running stack; REPLAY=1 repeats it under the same
 # Idempotency-Key and shows that the second call creates nothing new.
 
-base_url="${BASE_URL:-http://127.0.0.1:${APP_PORT:-8080}}"
+base_url="${BASE_URL:-http://127.0.0.1:${APP_PORT:-17080}}"
 compose="${COMPOSE:-docker compose}"
 order_id="${ORDER_ID:-checkout-$(date +%s)}"
 key="checkout-$order_id"

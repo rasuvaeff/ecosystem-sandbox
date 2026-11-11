@@ -4,7 +4,7 @@ set -euo pipefail
 # The opt-in captcha gate (yii3-recaptcha) on the checkout, verified against
 # the payment mock's stand-in for Google's siteverify: no internet needed.
 compose="${COMPOSE:-docker compose}"
-base_url="${BASE_URL:-http://127.0.0.1:${APP_PORT:-8080}}"
+base_url="${BASE_URL:-http://127.0.0.1:${APP_PORT:-17080}}"
 verify_url='http://payment-mock:8081/recaptcha/siteverify'
 
 restore() {

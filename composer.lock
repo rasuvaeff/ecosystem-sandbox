@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f749df356859fb815c4abd9bf9668e78",
+    "content-hash": "2de11958ae2de5d32fc9b6aa913bed53",
     "packages": [
         {
             "name": "alexkart/curl-builder",
@@ -322,20 +322,20 @@
         },
         {
             "name": "doctrine/deprecations",
-            "version": "1.1.6",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/deprecations.git",
-                "reference": "d4fe3e6fd9bb9e72557a19674f44d8ac7db4c6ca"
+                "reference": "d2e16653a734c8784c1851ad68b02f997b53ca82"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/deprecations/zipball/d4fe3e6fd9bb9e72557a19674f44d8ac7db4c6ca",
-                "reference": "d4fe3e6fd9bb9e72557a19674f44d8ac7db4c6ca",
+                "url": "https://api.github.com/repos/doctrine/deprecations/zipball/d2e16653a734c8784c1851ad68b02f997b53ca82",
+                "reference": "d2e16653a734c8784c1851ad68b02f997b53ca82",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1 || ^8.0"
+                "php": "^7.4 || ^8.0"
             },
             "conflict": {
                 "phpunit/phpunit": "<=7.5 || >=14"
@@ -364,9 +364,9 @@
             "homepage": "https://www.doctrine-project.org/",
             "support": {
                 "issues": "https://github.com/doctrine/deprecations/issues",
-                "source": "https://github.com/doctrine/deprecations/tree/1.1.6"
+                "source": "https://github.com/doctrine/deprecations/tree/1.2.0"
             },
-            "time": "2026-02-07T07:09:04+00:00"
+            "time": "2026-11-11T10:04:49+00:00"
         },
         {
             "name": "google/protobuf",
@@ -943,26 +943,25 @@
         },
         {
             "name": "mcp/sdk",
-            "version": "v0.8.1",
+            "version": "v0.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/modelcontextprotocol/php-sdk.git",
-                "reference": "c5dbfb64e5a2a30872ec3927b4cf13a2eb05e10e"
+                "reference": "5701e69b3f8dcbaf481f8d1ee28a8796a0b7807f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modelcontextprotocol/php-sdk/zipball/c5dbfb64e5a2a30872ec3927b4cf13a2eb05e10e",
-                "reference": "c5dbfb64e5a2a30872ec3927b4cf13a2eb05e10e",
+                "url": "https://api.github.com/repos/modelcontextprotocol/php-sdk/zipball/5701e69b3f8dcbaf481f8d1ee28a8796a0b7807f",
+                "reference": "5701e69b3f8dcbaf481f8d1ee28a8796a0b7807f",
                 "shasum": ""
             },
             "require": {
-                "ext-fileinfo": "*",
                 "opis/json-schema": "^2.4",
-                "php": "^8.1",
+                "php": "^8.2",
                 "php-http/discovery": "^1.20",
-                "phpdocumentor/reflection-docblock": "^5.6 || ^6.0",
+                "phpdocumentor/reflection-docblock": "^6.0",
                 "psr/clock": "^1.0",
-                "psr/container": "^1.0 || ^2.0",
+                "psr/container": "^1.1 || ^2.0",
                 "psr/event-dispatcher": "^1.0",
                 "psr/http-client": "^1.0",
                 "psr/http-factory": "^1.1",
@@ -973,8 +972,14 @@
                 "symfony/deprecation-contracts": "^2.5 || ^3.0",
                 "symfony/uid": "^5.4 || ^6.4 || ^7.3 || ^8.0"
             },
+            "conflict": {
+                "phpstan/phpstan": "2.3.0"
+            },
             "require-dev": {
+                "amphp/amp": "^3.0",
+                "amphp/http-server": "^3.3",
                 "composer/semver": "^3.0",
+                "deptrac/deptrac": "^3.0",
                 "ext-openssl": "*",
                 "firebase/php-jwt": "^6.10 || ^7.0",
                 "laminas/laminas-httphandlerrunner": "^2.12",
@@ -985,15 +990,18 @@
                 "phpdocumentor/shim": "^3",
                 "phpstan/phpstan": "^2.1",
                 "phpunit/phpunit": "^10.5",
+                "psr/cache": "^1.0 || ^2.0 || ^3.0",
                 "psr/simple-cache": "^2.0 || ^3.0",
+                "react/async": "^4.3",
+                "react/http": "^1.11",
+                "react/promise": "^3.0",
+                "revolt/event-loop": "^1.0",
                 "symfony/cache": "^5.4 || ^6.4 || ^7.3 || ^8.0",
                 "symfony/console": "^5.4 || ^6.4 || ^7.3 || ^8.0",
                 "symfony/finder": "^5.4 || ^6.4 || ^7.3 || ^8.0",
                 "symfony/http-client": "^5.4 || ^6.4 || ^7.3 || ^8.0",
+                "symfony/lock": "^5.4 || ^6.4 || ^7.3 || ^8.0",
                 "symfony/process": "^5.4 || ^6.4 || ^7.3 || ^8.0"
-            },
-            "suggest": {
-                "symfony/finder": "Required for file-based discovery."
             },
             "type": "library",
             "autoload": {
@@ -1022,9 +1030,9 @@
             "description": "Model Context Protocol SDK for Client and Server applications in PHP",
             "support": {
                 "issues": "https://github.com/modelcontextprotocol/php-sdk/issues",
-                "source": "https://github.com/modelcontextprotocol/php-sdk/tree/v0.8.1"
+                "source": "https://github.com/modelcontextprotocol/php-sdk/tree/v0.10.0"
             },
-            "time": "2026-08-29T23:10:56+00:00"
+            "time": "2026-11-10T17:11:02+00:00"
         },
         {
             "name": "nikic/fast-route",
@@ -1144,36 +1152,43 @@
         },
         {
             "name": "open-telemetry/api",
-            "version": "1.10.0",
+            "version": "1.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opentelemetry-php/api.git",
-                "reference": "7c029c4a6fd457094a20569bf98f93d95e9a7559"
+                "reference": "bc169d9ecd11858e941657770dc708c6a15fc5f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opentelemetry-php/api/zipball/7c029c4a6fd457094a20569bf98f93d95e9a7559",
-                "reference": "7c029c4a6fd457094a20569bf98f93d95e9a7559",
+                "url": "https://api.github.com/repos/opentelemetry-php/api/zipball/bc169d9ecd11858e941657770dc708c6a15fc5f4",
+                "reference": "bc169d9ecd11858e941657770dc708c6a15fc5f4",
                 "shasum": ""
             },
             "require": {
                 "open-telemetry/context": "^1.4",
-                "php": "^8.1",
-                "psr/log": "^1.1|^2.0|^3.0",
-                "symfony/polyfill-php82": "^1.26"
+                "php": "^8.2",
+                "psr/log": "^1.1|^2.0|^3.0"
             },
             "conflict": {
-                "open-telemetry/sdk": "<=1.11"
+                "open-telemetry/sdk": "<=1.11",
+                "open-telemetry/sdk-configuration": "<0.10"
+            },
+            "suggest": {
+                "symfony/config": "To implement a ComponentProvider for declarative configuration"
             },
             "type": "library",
             "extra": {
                 "spi": {
+                    "OpenTelemetry\\API\\Configuration\\Config\\ComponentProvider": [
+                        "OpenTelemetry\\API\\Baggage\\Propagation\\Config\\TextMapPropagatorBaggage",
+                        "OpenTelemetry\\API\\Trace\\Propagation\\Config\\TextMapPropagatorTraceContext"
+                    ],
                     "OpenTelemetry\\API\\Instrumentation\\AutoInstrumentation\\HookManagerInterface": [
                         "OpenTelemetry\\API\\Instrumentation\\AutoInstrumentation\\ExtensionHookManager"
                     ]
                 },
                 "branch-alias": {
-                    "dev-main": "1.8.x-dev"
+                    "dev-main": "1.11.x-dev"
                 }
             },
             "autoload": {
@@ -1210,25 +1225,24 @@
                 "issues": "https://github.com/open-telemetry/opentelemetry-php/issues",
                 "source": "https://github.com/open-telemetry/opentelemetry-php"
             },
-            "time": "2026-07-06T12:28:04+00:00"
+            "time": "2026-11-05T11:54:49+00:00"
         },
         {
             "name": "open-telemetry/context",
-            "version": "1.5.0",
+            "version": "1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opentelemetry-php/context.git",
-                "reference": "3c414b246e0dabb7d6145404e6a5e4536ca18d07"
+                "reference": "711e7291d9cf8a984c059c5afd926e45ab444b7f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opentelemetry-php/context/zipball/3c414b246e0dabb7d6145404e6a5e4536ca18d07",
-                "reference": "3c414b246e0dabb7d6145404e6a5e4536ca18d07",
+                "url": "https://api.github.com/repos/opentelemetry-php/context/zipball/711e7291d9cf8a984c059c5afd926e45ab444b7f",
+                "reference": "711e7291d9cf8a984c059c5afd926e45ab444b7f",
                 "shasum": ""
             },
             "require": {
-                "php": "^8.1",
-                "symfony/polyfill-php82": "^1.26"
+                "php": "^8.2"
             },
             "suggest": {
                 "ext-ffi": "To allow context switching in Fibers"
@@ -1236,7 +1250,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "1.0.x-dev"
+                    "dev-main": "1.6.x-dev"
                 }
             },
             "autoload": {
@@ -1269,7 +1283,7 @@
                 "issues": "https://github.com/open-telemetry/opentelemetry-php/issues",
                 "source": "https://github.com/open-telemetry/opentelemetry-php"
             },
-            "time": "2025-10-19T06:44:33+00:00"
+            "time": "2026-11-05T11:54:49+00:00"
         },
         {
             "name": "open-telemetry/exporter-otlp",
@@ -1557,16 +1571,16 @@
         },
         {
             "name": "opis/json-schema",
-            "version": "2.6.0",
+            "version": "2.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opis/json-schema.git",
-                "reference": "8458763e0dd0b6baa310e04f1829fc73da4e8c8a"
+                "reference": "7d8685a78db131eb6a1571cc7b4db8f4b59e8628"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opis/json-schema/zipball/8458763e0dd0b6baa310e04f1829fc73da4e8c8a",
-                "reference": "8458763e0dd0b6baa310e04f1829fc73da4e8c8a",
+                "url": "https://api.github.com/repos/opis/json-schema/zipball/7d8685a78db131eb6a1571cc7b4db8f4b59e8628",
+                "reference": "7d8685a78db131eb6a1571cc7b4db8f4b59e8628",
                 "shasum": ""
             },
             "require": {
@@ -1616,9 +1630,9 @@
             ],
             "support": {
                 "issues": "https://github.com/opis/json-schema/issues",
-                "source": "https://github.com/opis/json-schema/tree/2.6.0"
+                "source": "https://github.com/opis/json-schema/tree/2.6.1"
             },
-            "time": "2025-10-17T12:46:48+00:00"
+            "time": "2026-11-06T04:25:16+00:00"
         },
         {
             "name": "opis/string",
@@ -2327,16 +2341,16 @@
         },
         {
             "name": "phpstan/phpdoc-parser",
-            "version": "2.3.6",
+            "version": "2.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpdoc-parser.git",
-                "reference": "1427af4647235b4a73b13940b1f1258d3584f36e"
+                "reference": "af8e840551031d254cfdb3a18a62c3470a309c10"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/1427af4647235b4a73b13940b1f1258d3584f36e",
-                "reference": "1427af4647235b4a73b13940b1f1258d3584f36e",
+                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/af8e840551031d254cfdb3a18a62c3470a309c10",
+                "reference": "af8e840551031d254cfdb3a18a62c3470a309c10",
                 "shasum": ""
             },
             "require": {
@@ -2368,9 +2382,9 @@
             "description": "PHPDoc parser with support for nullable, intersection and generic types",
             "support": {
                 "issues": "https://github.com/phpstan/phpdoc-parser/issues",
-                "source": "https://github.com/phpstan/phpdoc-parser/tree/2.3.6"
+                "source": "https://github.com/phpstan/phpdoc-parser/tree/2.4.1"
             },
-            "time": "2026-09-27T20:07:45+00:00"
+            "time": "2026-10-30T19:36:28+00:00"
         },
         {
             "name": "predis/predis",
@@ -2503,6 +2517,55 @@
                 "source": "https://github.com/PromPHP/prometheus_client_php/tree/v2.15.1"
             },
             "time": "2026-05-28T07:51:04+00:00"
+        },
+        {
+            "name": "psr/cache",
+            "version": "3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/cache.git",
+                "reference": "aa5030cfa5405eccfdcb1083ce040c2cb8d253bf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/cache/zipball/aa5030cfa5405eccfdcb1083ce040c2cb8d253bf",
+                "reference": "aa5030cfa5405eccfdcb1083ce040c2cb8d253bf",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Cache\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "https://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for caching libraries",
+            "keywords": [
+                "cache",
+                "psr",
+                "psr-6"
+            ],
+            "support": {
+                "source": "https://github.com/php-fig/cache/tree/3.0.0"
+            },
+            "time": "2021-02-03T23:26:27+00:00"
         },
         {
             "name": "psr/clock",
@@ -5993,21 +6056,23 @@
         },
         {
             "name": "rasuvaeff/yii3-mcp",
-            "version": "v4.1.1",
+            "version": "v5.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rasuvaeff/yii3-mcp.git",
-                "reference": "b0c1437c6044451bd375c34c7d48779583d09586"
+                "reference": "ffc8cb505c8e3cc7cb6298418160d5e599eb03ff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rasuvaeff/yii3-mcp/zipball/b0c1437c6044451bd375c34c7d48779583d09586",
-                "reference": "b0c1437c6044451bd375c34c7d48779583d09586",
+                "url": "https://api.github.com/repos/rasuvaeff/yii3-mcp/zipball/ffc8cb505c8e3cc7cb6298418160d5e599eb03ff",
+                "reference": "ffc8cb505c8e3cc7cb6298418160d5e599eb03ff",
                 "shasum": ""
             },
             "require": {
-                "mcp/sdk": "~0.8.1",
+                "composer-runtime-api": "^2.0",
+                "mcp/sdk": "~0.10.0",
                 "php": "8.3 - 8.5",
+                "psr/cache": "^2.0 || ^3.0",
                 "psr/container": "^2.0",
                 "psr/http-client": "^1.0",
                 "psr/http-factory": "^1.1",
@@ -6022,6 +6087,7 @@
             },
             "require-dev": {
                 "ergebnis/composer-normalize": "^2.51",
+                "firebase/php-jwt": "^7.0",
                 "friendsofphp/php-cs-fixer": "^3.95",
                 "infection/infection": "^0.35",
                 "maglnet/composer-require-checker": "^4.17",
@@ -6033,10 +6099,11 @@
                 "roave/backward-compatibility-check": "^8.0",
                 "testo/bridge-infection": "^0.1.6",
                 "testo/testo": "^0.10.25",
-                "vimeo/psalm": "^6.16",
+                "vimeo/psalm": "^7.0",
                 "yiisoft/test-support": "^3.0"
             },
             "suggest": {
+                "firebase/php-jwt": "JWT access-token validation for the OAuth resource server (BearerTokenMiddleware)",
                 "guzzlehttp/guzzle": "PSR-18 HTTP client for the OpenAPI bridge executor and spec loader"
             },
             "type": "library",
@@ -6067,7 +6134,7 @@
                     "email": "rasuvaeff@gmail.com"
                 }
             ],
-            "description": "MCP server integration for Yii3: PSR-15 Streamable HTTP endpoint, DI tool registry, and stdio transport over the official mcp/sdk",
+            "description": "MCP server for Yii3 on the official mcp/sdk: attribute tools, OpenAPI bridge, per-user RBAC and audit log for everything the model touches",
             "homepage": "https://github.com/rasuvaeff/yii3-mcp",
             "keywords": [
                 "ai",
@@ -6081,27 +6148,27 @@
                 "issues": "https://github.com/rasuvaeff/yii3-mcp/issues",
                 "source": "https://github.com/rasuvaeff/yii3-mcp"
             },
-            "time": "2026-10-10T09:54:58+00:00"
+            "time": "2026-11-11T09:34:43+00:00"
         },
         {
             "name": "rasuvaeff/yii3-mcp-audit-log-bridge",
-            "version": "v2.2.0",
+            "version": "v2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rasuvaeff/yii3-mcp-audit-log-bridge.git",
-                "reference": "8add53702fbecfc2a671fa13ad654ba138791b0e"
+                "reference": "b285bb5d62e3800410f2d01feaad41bd5cb83488"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rasuvaeff/yii3-mcp-audit-log-bridge/zipball/8add53702fbecfc2a671fa13ad654ba138791b0e",
-                "reference": "8add53702fbecfc2a671fa13ad654ba138791b0e",
+                "url": "https://api.github.com/repos/rasuvaeff/yii3-mcp-audit-log-bridge/zipball/b285bb5d62e3800410f2d01feaad41bd5cb83488",
+                "reference": "b285bb5d62e3800410f2d01feaad41bd5cb83488",
                 "shasum": ""
             },
             "require": {
-                "mcp/sdk": "~0.8.1",
+                "mcp/sdk": "~0.10.0",
                 "php": "8.3 - 8.5",
                 "rasuvaeff/yii3-audit-log": "^1.0",
-                "rasuvaeff/yii3-mcp": "^4.0"
+                "rasuvaeff/yii3-mcp": "^5.0"
             },
             "require-dev": {
                 "ergebnis/composer-normalize": "^2.51",
@@ -6109,12 +6176,12 @@
                 "infection/infection": "^0.35",
                 "maglnet/composer-require-checker": "^4.17",
                 "nyholm/psr7": "^1.8",
-                "rasuvaeff/yii3-mcp-rbac-bridge": "^1.0",
+                "rasuvaeff/yii3-mcp-rbac-bridge": "^1.4",
                 "rector/rector": "^2.4",
                 "roave/backward-compatibility-check": "^8.0",
                 "testo/bridge-infection": "^0.1.6",
                 "testo/testo": "^0.10.25",
-                "vimeo/psalm": "^6.16",
+                "vimeo/psalm": "^7.0",
                 "yiisoft/test-support": "^3.0"
             },
             "suggest": {
@@ -6150,40 +6217,40 @@
                 "issues": "https://github.com/rasuvaeff/yii3-mcp-audit-log-bridge/issues",
                 "source": "https://github.com/rasuvaeff/yii3-mcp-audit-log-bridge"
             },
-            "time": "2026-10-08T20:42:17+00:00"
+            "time": "2026-11-11T09:59:17+00:00"
         },
         {
             "name": "rasuvaeff/yii3-mcp-rbac-bridge",
-            "version": "v1.3.0",
+            "version": "v1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rasuvaeff/yii3-mcp-rbac-bridge.git",
-                "reference": "cc52e6cf77d2da69abf33826f1502f0faa5331a8"
+                "reference": "d9fe5dd647a154b04a23bfaff9a42df9a9b3cc76"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rasuvaeff/yii3-mcp-rbac-bridge/zipball/cc52e6cf77d2da69abf33826f1502f0faa5331a8",
-                "reference": "cc52e6cf77d2da69abf33826f1502f0faa5331a8",
+                "url": "https://api.github.com/repos/rasuvaeff/yii3-mcp-rbac-bridge/zipball/d9fe5dd647a154b04a23bfaff9a42df9a9b3cc76",
+                "reference": "d9fe5dd647a154b04a23bfaff9a42df9a9b3cc76",
                 "shasum": ""
             },
             "require": {
-                "mcp/sdk": "~0.6.0 || ~0.7.0 || ~0.8.1",
+                "mcp/sdk": "~0.10.0",
                 "php": "8.3 - 8.5",
-                "rasuvaeff/yii3-mcp": "^1.1 || ^2.0 || ^3.0 || ^4.0",
+                "rasuvaeff/yii3-mcp": "^5.0",
                 "yiisoft/access": "^2.0",
                 "yiisoft/user": "^2.0"
             },
             "require-dev": {
                 "ergebnis/composer-normalize": "^2.51",
                 "friendsofphp/php-cs-fixer": "^3.95",
-                "infection/infection": "^0.33",
+                "infection/infection": "^0.35",
                 "maglnet/composer-require-checker": "^4.17",
                 "nyholm/psr7": "^1.8",
                 "rector/rector": "^2.4",
                 "roave/backward-compatibility-check": "^8.0",
                 "testo/bridge-infection": "^0.1.6",
                 "testo/testo": "^0.10.25",
-                "vimeo/psalm": "^6.16",
+                "vimeo/psalm": "^7.0",
                 "yiisoft/test-support": "^3.0"
             },
             "suggest": {
@@ -6219,32 +6286,33 @@
                 "issues": "https://github.com/rasuvaeff/yii3-mcp-rbac-bridge/issues",
                 "source": "https://github.com/rasuvaeff/yii3-mcp-rbac-bridge"
             },
-            "time": "2026-10-08T20:35:51+00:00"
+            "time": "2026-11-11T09:52:08+00:00"
         },
         {
             "name": "rasuvaeff/yii3-mcp-telemetry-bridge",
-            "version": "v1.4.0",
+            "version": "v1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rasuvaeff/yii3-mcp-telemetry-bridge.git",
-                "reference": "eba20d8ade18a115516c4439ce26a2b01c1f3906"
+                "reference": "28344fea1f76cf70f597d7bfa864666a55812b0c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rasuvaeff/yii3-mcp-telemetry-bridge/zipball/eba20d8ade18a115516c4439ce26a2b01c1f3906",
-                "reference": "eba20d8ade18a115516c4439ce26a2b01c1f3906",
+                "url": "https://api.github.com/repos/rasuvaeff/yii3-mcp-telemetry-bridge/zipball/28344fea1f76cf70f597d7bfa864666a55812b0c",
+                "reference": "28344fea1f76cf70f597d7bfa864666a55812b0c",
                 "shasum": ""
             },
             "require": {
+                "mcp/sdk": "~0.10.0",
                 "php": "8.3 - 8.5",
-                "rasuvaeff/yii3-mcp": "^4.0",
+                "rasuvaeff/yii3-mcp": "^5.0",
                 "rasuvaeff/yii3-metrics": "^1.0 || ^2.0",
                 "rasuvaeff/yii3-telemetry": "^1.0"
             },
             "require-dev": {
                 "ergebnis/composer-normalize": "^2.51",
                 "friendsofphp/php-cs-fixer": "^3.95",
-                "infection/infection": "^0.33",
+                "infection/infection": "^0.35",
                 "maglnet/composer-require-checker": "^4.17",
                 "nyholm/psr7": "^1.8",
                 "rasuvaeff/understudy-testo": "^1.0",
@@ -6253,7 +6321,7 @@
                 "roave/backward-compatibility-check": "^8.0",
                 "testo/bridge-infection": "^0.1.6",
                 "testo/testo": "^0.10.25",
-                "vimeo/psalm": "^6.16",
+                "vimeo/psalm": "^7.0",
                 "yiisoft/test-support": "^3.0"
             },
             "type": "library",
@@ -6288,7 +6356,7 @@
                 "issues": "https://github.com/rasuvaeff/yii3-mcp-telemetry-bridge/issues",
                 "source": "https://github.com/rasuvaeff/yii3-mcp-telemetry-bridge"
             },
-            "time": "2026-10-08T20:35:58+00:00"
+            "time": "2026-11-11T09:58:20+00:00"
         },
         {
             "name": "rasuvaeff/yii3-metrics",
@@ -7202,16 +7270,16 @@
         },
         {
             "name": "rasuvaeff/yii3-telemetry",
-            "version": "v1.2.1",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rasuvaeff/yii3-telemetry.git",
-                "reference": "e79105fe7e3bda6656d77358e5cf6d14fb829249"
+                "reference": "95aa124acfa5b2999a9c60ce15b25dcfdbd2930d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rasuvaeff/yii3-telemetry/zipball/e79105fe7e3bda6656d77358e5cf6d14fb829249",
-                "reference": "e79105fe7e3bda6656d77358e5cf6d14fb829249",
+                "url": "https://api.github.com/repos/rasuvaeff/yii3-telemetry/zipball/95aa124acfa5b2999a9c60ce15b25dcfdbd2930d",
+                "reference": "95aa124acfa5b2999a9c60ce15b25dcfdbd2930d",
                 "shasum": ""
             },
             "require": {
@@ -7290,7 +7358,7 @@
                 "issues": "https://github.com/rasuvaeff/yii3-telemetry/issues",
                 "source": "https://github.com/rasuvaeff/yii3-telemetry"
             },
-            "time": "2026-10-10T12:29:15+00:00"
+            "time": "2026-10-17T15:27:56+00:00"
         },
         {
             "name": "rasuvaeff/yii3-telemetry-otel",
@@ -8090,16 +8158,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v7.4.21",
+            "version": "v7.4.23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "21f1bc2296f7ff6043241a8dcbc09559b3732820"
+                "reference": "81957c2440c05c962fe8291f318de6e85f8db330"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/21f1bc2296f7ff6043241a8dcbc09559b3732820",
-                "reference": "21f1bc2296f7ff6043241a8dcbc09559b3732820",
+                "url": "https://api.github.com/repos/symfony/console/zipball/81957c2440c05c962fe8291f318de6e85f8db330",
+                "reference": "81957c2440c05c962fe8291f318de6e85f8db330",
                 "shasum": ""
             },
             "require": {
@@ -8164,7 +8232,7 @@
                 "terminal"
             ],
             "support": {
-                "source": "https://github.com/symfony/console/tree/v7.4.21"
+                "source": "https://github.com/symfony/console/tree/v7.4.23"
             },
             "funding": [
                 {
@@ -8184,20 +8252,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-12T18:45:38+00:00"
+            "time": "2026-11-03T21:47:07+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
-            "version": "v3.7.1",
+            "version": "v3.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/deprecation-contracts.git",
-                "reference": "f3202fa1b5097b0af062dc978b32ecf63404e31d"
+                "reference": "feb1edf4e546af3b85c5caebe8359a20db230ca3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/f3202fa1b5097b0af062dc978b32ecf63404e31d",
-                "reference": "f3202fa1b5097b0af062dc978b32ecf63404e31d",
+                "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/feb1edf4e546af3b85c5caebe8359a20db230ca3",
+                "reference": "feb1edf4e546af3b85c5caebe8359a20db230ca3",
                 "shasum": ""
             },
             "require": {
@@ -8210,7 +8278,7 @@
                     "name": "symfony/contracts"
                 },
                 "branch-alias": {
-                    "dev-main": "3.7-dev"
+                    "dev-main": "3.8-dev"
                 }
             },
             "autoload": {
@@ -8235,7 +8303,7 @@
             "description": "A generic function and convention to trigger deprecation notices",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/deprecation-contracts/tree/v3.7.1"
+                "source": "https://github.com/symfony/deprecation-contracts/tree/v3.8.1"
             },
             "funding": [
                 {
@@ -8255,7 +8323,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-06-05T06:23:12+00:00"
+            "time": "2026-09-16T14:15:10+00:00"
         },
         {
             "name": "symfony/event-dispatcher-contracts",
@@ -8647,16 +8715,16 @@
         },
         {
             "name": "symfony/polyfill-intl-grapheme",
-            "version": "v1.43.0",
+            "version": "v1.43.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-intl-grapheme.git",
-                "reference": "5cac8f4db97208823aa353f59a01faad2da52c75"
+                "reference": "5a8f33c87aeecffce24e721b5064fab05f4becf8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-intl-grapheme/zipball/5cac8f4db97208823aa353f59a01faad2da52c75",
-                "reference": "5cac8f4db97208823aa353f59a01faad2da52c75",
+                "url": "https://api.github.com/repos/symfony/polyfill-intl-grapheme/zipball/5a8f33c87aeecffce24e721b5064fab05f4becf8",
+                "reference": "5a8f33c87aeecffce24e721b5064fab05f4becf8",
                 "shasum": ""
             },
             "require": {
@@ -8705,7 +8773,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-intl-grapheme/tree/v1.43.0"
+                "source": "https://github.com/symfony/polyfill-intl-grapheme/tree/v1.43.3"
             },
             "funding": [
                 {
@@ -8725,7 +8793,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-25T15:46:47+00:00"
+            "time": "2026-10-15T09:18:53+00:00"
         },
         {
             "name": "symfony/polyfill-intl-idn",
@@ -8901,16 +8969,16 @@
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.43.0",
+            "version": "v1.43.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "4d5d331bf731e0aedbc6b2f5e61135b7b7996a72"
+                "reference": "122889ed24dc000165bcbfd77ec412f15cbdfc6a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/4d5d331bf731e0aedbc6b2f5e61135b7b7996a72",
-                "reference": "4d5d331bf731e0aedbc6b2f5e61135b7b7996a72",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/122889ed24dc000165bcbfd77ec412f15cbdfc6a",
+                "reference": "122889ed24dc000165bcbfd77ec412f15cbdfc6a",
                 "shasum": ""
             },
             "require": {
@@ -8962,7 +9030,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.43.0"
+                "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.43.3"
             },
             "funding": [
                 {
@@ -8982,7 +9050,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-24T15:19:04+00:00"
+            "time": "2026-10-28T09:35:49+00:00"
         },
         {
             "name": "symfony/polyfill-php80",
@@ -9233,16 +9301,16 @@
         },
         {
             "name": "symfony/service-contracts",
-            "version": "v3.7.3",
+            "version": "v3.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/service-contracts.git",
-                "reference": "15e6a07ec2a2c75ceb1b21dd98105ee8456d2257"
+                "reference": "052852a96fd5e5ebdb617dba22031e41a3300fb5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/service-contracts/zipball/15e6a07ec2a2c75ceb1b21dd98105ee8456d2257",
-                "reference": "15e6a07ec2a2c75ceb1b21dd98105ee8456d2257",
+                "url": "https://api.github.com/repos/symfony/service-contracts/zipball/052852a96fd5e5ebdb617dba22031e41a3300fb5",
+                "reference": "052852a96fd5e5ebdb617dba22031e41a3300fb5",
                 "shasum": ""
             },
             "require": {
@@ -9260,7 +9328,7 @@
                     "name": "symfony/contracts"
                 },
                 "branch-alias": {
-                    "dev-main": "3.7-dev"
+                    "dev-main": "3.8-dev"
                 }
             },
             "autoload": {
@@ -9296,7 +9364,7 @@
                 "standards"
             ],
             "support": {
-                "source": "https://github.com/symfony/service-contracts/tree/v3.7.3"
+                "source": "https://github.com/symfony/service-contracts/tree/v3.8.1"
             },
             "funding": [
                 {
@@ -9316,20 +9384,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-07-27T15:39:01+00:00"
+            "time": "2026-10-20T17:38:25+00:00"
         },
         {
             "name": "symfony/string",
-            "version": "v8.1.9",
+            "version": "v8.1.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/string.git",
-                "reference": "07fb208558f941eab50ec49c89c2a6a93fb11f01"
+                "reference": "6c6110979c0150393bbb336170e286d51ab4d76c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/string/zipball/07fb208558f941eab50ec49c89c2a6a93fb11f01",
-                "reference": "07fb208558f941eab50ec49c89c2a6a93fb11f01",
+                "url": "https://api.github.com/repos/symfony/string/zipball/6c6110979c0150393bbb336170e286d51ab4d76c",
+                "reference": "6c6110979c0150393bbb336170e286d51ab4d76c",
                 "shasum": ""
             },
             "require": {
@@ -9386,7 +9454,7 @@
                 "utf8"
             ],
             "support": {
-                "source": "https://github.com/symfony/string/tree/v8.1.9"
+                "source": "https://github.com/symfony/string/tree/v8.1.10"
             },
             "funding": [
                 {
@@ -9406,7 +9474,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-03T15:16:03+00:00"
+            "time": "2026-10-23T17:06:53+00:00"
         },
         {
             "name": "symfony/uid",
@@ -9578,16 +9646,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v7.4.21",
+            "version": "v7.4.23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "044907929c7999814378be22da34722c7a86bad4"
+                "reference": "1e601207ffe627a2e621faa9d661f1d32dcf1cec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/044907929c7999814378be22da34722c7a86bad4",
-                "reference": "044907929c7999814378be22da34722c7a86bad4",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/1e601207ffe627a2e621faa9d661f1d32dcf1cec",
+                "reference": "1e601207ffe627a2e621faa9d661f1d32dcf1cec",
                 "shasum": ""
             },
             "require": {
@@ -9630,7 +9698,7 @@
             "description": "Loads and dumps YAML files",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/yaml/tree/v7.4.21"
+                "source": "https://github.com/symfony/yaml/tree/v7.4.23"
             },
             "funding": [
                 {
@@ -9650,7 +9718,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-12T12:34:30+00:00"
+            "time": "2026-11-04T08:27:22+00:00"
         },
         {
             "name": "tbachert/spi",
@@ -9856,31 +9924,39 @@
         },
         {
             "name": "yiisoft/access",
-            "version": "2.0.1",
+            "version": "2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/access.git",
-                "reference": "434612e7a26108d0ec97223c882f3c4cafded037"
+                "reference": "c93a1b62d40361dc8b7a1ab47e2ddc7ac9924ec4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/access/zipball/434612e7a26108d0ec97223c882f3c4cafded037",
-                "reference": "434612e7a26108d0ec97223c882f3c4cafded037",
+                "url": "https://api.github.com/repos/yiisoft/access/zipball/c93a1b62d40361dc8b7a1ab47e2ddc7ac9924ec4",
+                "reference": "c93a1b62d40361dc8b7a1ab47e2ddc7ac9924ec4",
                 "shasum": ""
             },
             "require": {
-                "php": "8.0 - 8.5"
+                "php": "8.0 - 8.6"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "^3.66",
-                "maglnet/composer-require-checker": "^4.4",
-                "phpunit/phpunit": "^9.6.22",
+                "bamarni/composer-bin-plugin": "^1.9",
+                "friendsofphp/php-cs-fixer": "^3.95",
+                "phpstan/phpstan": "^2.1",
+                "phpunit/phpunit": "^9.6.35",
                 "rector/rector": "^2.0.8",
-                "roave/infection-static-analysis-plugin": "^1.25",
+                "shipmonk/composer-dependency-analyser": "^1.8",
                 "spatie/phpunit-watcher": "^1.23.6",
-                "vimeo/psalm": "^4.30 || ^5.26.1 || ^6.5"
+                "yiisoft/code-style": "^1.0"
             },
             "type": "library",
+            "extra": {
+                "bamarni-bin": {
+                    "bin-links": true,
+                    "forward-command": true,
+                    "target-directory": "tools"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "Yiisoft\\Access\\": "src"
@@ -9916,7 +9992,7 @@
                     "type": "opencollective"
                 }
             ],
-            "time": "2025-12-13T10:12:01+00:00"
+            "time": "2026-10-31T13:05:54+00:00"
         },
         {
             "name": "yiisoft/aliases",
@@ -13369,29 +13445,32 @@
         },
         {
             "name": "yiisoft/strings",
-            "version": "2.7.0",
+            "version": "2.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/strings.git",
-                "reference": "9bc7fea56374619cccd4587848029fe97f98bb33"
+                "reference": "f11eb6562b09326602b02827d2f6f237154359a1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/strings/zipball/9bc7fea56374619cccd4587848029fe97f98bb33",
-                "reference": "9bc7fea56374619cccd4587848029fe97f98bb33",
+                "url": "https://api.github.com/repos/yiisoft/strings/zipball/f11eb6562b09326602b02827d2f6f237154359a1",
+                "reference": "f11eb6562b09326602b02827d2f6f237154359a1",
                 "shasum": ""
             },
             "require": {
                 "ext-mbstring": "*",
-                "php": "8.1 - 8.5"
+                "php": "8.1 - 8.6"
             },
             "require-dev": {
                 "bamarni/composer-bin-plugin": "^1.8.2",
-                "maglnet/composer-require-checker": "^4.7.1",
+                "friendsofphp/php-cs-fixer": "^3.95",
                 "phpbench/phpbench": "^1.4.1",
+                "phpstan/phpstan": "^2.3",
                 "phpunit/phpunit": "^10.5.48",
                 "rector/rector": "^2.1.2",
-                "spatie/phpunit-watcher": "^1.24"
+                "shipmonk/composer-dependency-analyser": "^1.8",
+                "spatie/phpunit-watcher": "^1.24",
+                "yiisoft/code-style": "^1.0"
             },
             "type": "library",
             "extra": {
@@ -13435,7 +13514,7 @@
                     "type": "opencollective"
                 }
             ],
-            "time": "2025-11-23T18:00:58+00:00"
+            "time": "2026-10-30T06:57:22+00:00"
         },
         {
             "name": "yiisoft/translator",

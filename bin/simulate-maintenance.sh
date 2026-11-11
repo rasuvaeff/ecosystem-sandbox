@@ -14,7 +14,7 @@ set -euo pipefail
 # this script can falsify.
 
 compose="${COMPOSE:-docker compose}"
-base_url="${BASE_URL:-http://127.0.0.1:${APP_PORT:-8080}}"
+base_url="${BASE_URL:-http://127.0.0.1:${APP_PORT:-17080}}"
 token="${MAINTENANCE_BYPASS_TOKEN:-sandbox-maintenance-bypass}"
 suffix="$(date +%s)"
 key="maintenance-$suffix"
