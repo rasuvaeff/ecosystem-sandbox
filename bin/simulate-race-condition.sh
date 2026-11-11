@@ -4,7 +4,7 @@ set -euo pipefail
 source "$(dirname "$0")/support/require-no-ui-worker.sh"
 
 compose="${COMPOSE:-docker compose}"
-base_url="${BASE_URL:-http://127.0.0.1:${APP_PORT:-8080}}"
+base_url="${BASE_URL:-http://127.0.0.1:${APP_PORT:-17080}}"
 order_id="race-$(date +%s)"
 requests="${RACE_REQUESTS:-50}"
 tmp_dir="$(mktemp -d)"

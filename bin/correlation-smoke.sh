@@ -8,7 +8,7 @@ source "$(dirname "$0")/support/require-no-ui-worker.sh"
 # is the id both audit rows (HTTP half and worker half) are filed under.
 
 compose="${COMPOSE:-docker compose}"
-base_url="${BASE_URL:-http://127.0.0.1:${APP_PORT:-8080}}"
+base_url="${BASE_URL:-http://127.0.0.1:${APP_PORT:-17080}}"
 order_id="correlation-$(date +%s)"
 body=$(printf '{"orderId":"%s","customerId":"customer-correlation","amountCents":2550}' "$order_id")
 

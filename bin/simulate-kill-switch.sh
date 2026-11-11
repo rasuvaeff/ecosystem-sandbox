@@ -2,7 +2,7 @@
 set -euo pipefail
 
 compose="${COMPOSE:-docker compose}"
-base_url="${BASE_URL:-http://127.0.0.1:${APP_PORT:-8080}}"
+base_url="${BASE_URL:-http://127.0.0.1:${APP_PORT:-17080}}"
 
 # The app must be up and migrated: the flag row is seeded by the flag data migration (migrate:up).
 $compose up -d --wait app >/dev/null

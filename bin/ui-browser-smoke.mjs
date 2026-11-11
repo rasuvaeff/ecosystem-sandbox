@@ -9,7 +9,7 @@ import { mkdtempSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
-const base = process.env.UI_URL ?? 'http://127.0.0.1:8080/ui/';
+const base = process.env.UI_URL ?? 'http://127.0.0.1:17080/ui/';
 const port = 9300 + Math.floor(Math.random() * 500);
 const chrome = spawn(process.env.CHROME ?? 'google-chrome', [
     '--headless=new', '--no-sandbox', '--disable-gpu', `--remote-debugging-port=${port}`,

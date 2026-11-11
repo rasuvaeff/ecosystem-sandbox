@@ -126,7 +126,7 @@ webhook-http-smoke: ## signed webhook delivery to the webhook mock over HTTP
 	WEBHOOK_FAIL_FIRST=1 $(COMPOSE) exec -T app php bin/webhook-http-smoke.php
 
 observability: ## print the Prometheus, Jaeger and /metrics addresses
-	@printf 'Prometheus: http://127.0.0.1:9090\nJaeger:      http://127.0.0.1:16686\nMetrics:     http://127.0.0.1:8080/metrics\n'
+	@printf 'Prometheus: http://127.0.0.1:17090\nJaeger:      http://127.0.0.1:17686\nMetrics:     http://127.0.0.1:17080/metrics\n'
 
 observability-smoke: $(VENDOR) ## Prometheus series, Jaeger spans, one trace across the outbox
 	$(COMPOSE) up -d --build --wait app prometheus
@@ -140,16 +140,16 @@ prometheus-outcomes-smoke: ## the business counter of payment outcomes
 redis-queue-smoke: $(VENDOR) ## Redis Streams consumer group: XAUTOCLAIM, XACK
 	$(COMPOSE) run --rm app php bin/redis-queue-smoke.php
 
-ui: ## web UI with a background worker: http://127.0.0.1:8080/ui/
+ui: ## web UI with a background worker: http://127.0.0.1:17080/ui/
 	WEBHOOK_FAIL_FIRST=1 RESULT_SINKS=centrifugo,webhooks,receipts OUTBOX_RETRY_DELAY_SECONDS=10 $(COMPOSE) --profile ui up -d --build --wait app worker prometheus
 	$(COMPOSE) exec -T app ./yii migrate:up -n >/dev/null
-	@printf 'Web UI: http://127.0.0.1:%s/ui/  Jaeger: http://127.0.0.1:%s  Prometheus: http://127.0.0.1:%s\n' "$${APP_PORT:-8080}" "$${JAEGER_UI_PORT:-16686}" "$${PROMETHEUS_PORT:-9090}"
+	@printf 'Web UI: http://127.0.0.1:%s/ui/  Jaeger: http://127.0.0.1:%s  Prometheus: http://127.0.0.1:%s\n' "$${APP_PORT:-17080}" "$${JAEGER_UI_PORT:-17686}" "$${PROMETHEUS_PORT:-17090}"
 
 ui-full: ## web UI plus ClickHouse analytics and Grafana
 	WEBHOOK_FAIL_FIRST=1 RESULT_SINKS=centrifugo,webhooks,receipts,clickhouse AB_EXPORT=1 OUTBOX_RETRY_DELAY_SECONDS=10 $(COMPOSE) --profile ui --profile analytics up -d --build --wait app worker prometheus clickhouse grafana
 	$(COMPOSE) exec -T app ./yii migrate:up -n >/dev/null
 	$(COMPOSE) exec -T app ./yii clickhouse:migrations:migrate >/dev/null
-	@printf 'Web UI: http://127.0.0.1:%s/ui/  Grafana: http://127.0.0.1:%s\n' "$${APP_PORT:-8080}" "$${GRAFANA_PORT:-13000}"
+	@printf 'Web UI: http://127.0.0.1:%s/ui/  Grafana: http://127.0.0.1:%s\n' "$${APP_PORT:-17080}" "$${GRAFANA_PORT:-17300}"
 
 ui-down: ## stop the web UI stack and drop its volumes
 	$(COMPOSE) --profile ui --profile realtime --profile analytics down -v

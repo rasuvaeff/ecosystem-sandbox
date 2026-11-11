@@ -4,8 +4,8 @@ set -euo pipefail
 source "$(dirname "$0")/support/require-no-ui-worker.sh"
 
 compose="${COMPOSE:-docker compose}"
-base_url="${BASE_URL:-http://127.0.0.1:${APP_PORT:-8080}}"
-prometheus_url="${PROMETHEUS_URL:-http://127.0.0.1:${PROMETHEUS_PORT:-9090}}"
+base_url="${BASE_URL:-http://127.0.0.1:${APP_PORT:-17080}}"
+prometheus_url="${PROMETHEUS_URL:-http://127.0.0.1:${PROMETHEUS_PORT:-17090}}"
 suffix="$(date +%s)"
 
 $compose up -d --build --wait app prometheus >/dev/null

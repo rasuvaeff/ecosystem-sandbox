@@ -3,7 +3,7 @@ set -euo pipefail
 
 source "$(dirname "$0")/support/require-no-ui-worker.sh"
 
-base_url="${BASE_URL:-http://127.0.0.1:${APP_PORT:-8080}}"
+base_url="${BASE_URL:-http://127.0.0.1:${APP_PORT:-17080}}"
 order_id="smoke-$(date +%s)"
 body=$(printf '{"orderId":"%s","customerId":"customer-1","amountCents":1999}' "$order_id")
 idempotency_key="smoke-$order_id"

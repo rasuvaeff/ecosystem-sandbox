@@ -143,7 +143,7 @@ return [
     ],
     'rasuvaeff/yii3-seo' => [
         'defaults' => new Rasuvaeff\Yii3Seo\MetadataDefaults(
-            metadataBase: App\Environment::string(name: 'APP_PUBLIC_URL', default: 'http://127.0.0.1:8080'),
+            metadataBase: App\Environment::string(name: 'APP_PUBLIC_URL', default: 'http://127.0.0.1:17080'),
             title: Rasuvaeff\Yii3Seo\Title::template('%s | rasuvaeff/* sandbox', default: 'rasuvaeff/* sandbox'),
             applicationName: 'rasuvaeff/* sandbox',
             openGraph: new Rasuvaeff\Yii3Seo\OpenGraph(siteName: 'rasuvaeff/* sandbox', locale: 'en_US'),
