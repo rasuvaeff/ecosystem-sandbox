@@ -11,7 +11,7 @@ use App\Domain\Assistant\Access\Permission;
 use App\Domain\Ordering\Exception\OrderNotFoundException;
 use App\Domain\Ordering\OrderId;
 use App\Domain\Ordering\TransitionRecord;
-use Mcp\Capability\Attribute\McpTool;
+use Mcp\Server\Capability\Attribute\McpTool;
 use Rasuvaeff\Yii3McpRbacBridge\RequiredPermission;
 
 /**
