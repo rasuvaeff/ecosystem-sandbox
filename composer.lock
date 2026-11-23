@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2de11958ae2de5d32fc9b6aa913bed53",
+    "content-hash": "736400f00780e8557e48308175b91cd2",
     "packages": [
         {
             "name": "alexkart/curl-builder",
@@ -13686,16 +13686,16 @@
         },
         {
             "name": "yiisoft/validator",
-            "version": "2.6.1",
+            "version": "2.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/validator.git",
-                "reference": "fb5547cfa4a94eeda25c4e28be1bb42e93b1b2a1"
+                "reference": "1194837d426c2c4fa038ba3f339eaaaae5612198"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/validator/zipball/fb5547cfa4a94eeda25c4e28be1bb42e93b1b2a1",
-                "reference": "fb5547cfa4a94eeda25c4e28be1bb42e93b1b2a1",
+                "url": "https://api.github.com/repos/yiisoft/validator/zipball/1194837d426c2c4fa038ba3f339eaaaae5612198",
+                "reference": "1194837d426c2c4fa038ba3f339eaaaae5612198",
                 "shasum": ""
             },
             "require": {
@@ -13777,7 +13777,7 @@
                     "type": "opencollective"
                 }
             ],
-            "time": "2026-09-22T16:35:06+00:00"
+            "time": "2026-11-23T14:31:41+00:00"
         },
         {
             "name": "yiisoft/var-dumper",
