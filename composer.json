@@ -104,7 +104,7 @@
         "yiisoft/router": "^4.0",
         "yiisoft/router-fastroute": "^4.0",
         "yiisoft/session": "^3.0",
-        "yiisoft/validator": "^2.5",
+        "yiisoft/validator": "^2.6.2",
         "yiisoft/view": "^12.2",
         "yiisoft/yii-console": "^2.4",
         "yiisoft/yii-event": "^2.2",
