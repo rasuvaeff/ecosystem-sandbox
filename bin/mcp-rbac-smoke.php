@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use App\Endpoint\Mcp\Assistant\AgentFactory;
 use Psr\Container\ContainerInterface;
-use Rasuvaeff\Yii3Mcp\Testing\McpTester;
+use Rasuvaeff\Mcp\Testing\McpTester;
 
 require dirname(__DIR__) . '/vendor/autoload.php';
 

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "736400f00780e8557e48308175b91cd2",
+    "content-hash": "fe4c23871687c2e80b6e7ccef651b5df",
     "packages": [
         {
             "name": "alexkart/curl-builder",
@@ -366,7 +366,8 @@
                 "issues": "https://github.com/doctrine/deprecations/issues",
                 "source": "https://github.com/doctrine/deprecations/tree/1.2.0"
             },
-            "time": "2026-11-11T10:04:49+00:00"
+            "time": "2026-11-11T10:04:49+00:00",
+            "published-time": "2026-11-11T10:12:24+00:00"
         },
         {
             "name": "google/protobuf",
@@ -1032,7 +1033,8 @@
                 "issues": "https://github.com/modelcontextprotocol/php-sdk/issues",
                 "source": "https://github.com/modelcontextprotocol/php-sdk/tree/v0.10.0"
             },
-            "time": "2026-11-10T17:11:02+00:00"
+            "time": "2026-11-10T17:11:02+00:00",
+            "published-time": "2026-11-10T17:17:23+00:00"
         },
         {
             "name": "nikic/fast-route",
@@ -1152,16 +1154,16 @@
         },
         {
             "name": "open-telemetry/api",
-            "version": "1.11.0",
+            "version": "1.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opentelemetry-php/api.git",
-                "reference": "bc169d9ecd11858e941657770dc708c6a15fc5f4"
+                "reference": "b0884741f3f9d5dc60477784c8671bd2acef4ceb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opentelemetry-php/api/zipball/bc169d9ecd11858e941657770dc708c6a15fc5f4",
-                "reference": "bc169d9ecd11858e941657770dc708c6a15fc5f4",
+                "url": "https://api.github.com/repos/opentelemetry-php/api/zipball/b0884741f3f9d5dc60477784c8671bd2acef4ceb",
+                "reference": "b0884741f3f9d5dc60477784c8671bd2acef4ceb",
                 "shasum": ""
             },
             "require": {
@@ -1188,7 +1190,7 @@
                     ]
                 },
                 "branch-alias": {
-                    "dev-main": "1.11.x-dev"
+                    "dev-main": "1.12.x-dev"
                 }
             },
             "autoload": {
@@ -1225,7 +1227,8 @@
                 "issues": "https://github.com/open-telemetry/opentelemetry-php/issues",
                 "source": "https://github.com/open-telemetry/opentelemetry-php"
             },
-            "time": "2026-11-05T11:54:49+00:00"
+            "time": "2026-11-19T08:10:15+00:00",
+            "published-time": "2026-11-19T08:15:35+00:00"
         },
         {
             "name": "open-telemetry/context",
@@ -1283,7 +1286,8 @@
                 "issues": "https://github.com/open-telemetry/opentelemetry-php/issues",
                 "source": "https://github.com/open-telemetry/opentelemetry-php"
             },
-            "time": "2026-11-05T11:54:49+00:00"
+            "time": "2026-11-05T11:54:49+00:00",
+            "published-time": "2026-11-05T12:00:45+00:00"
         },
         {
             "name": "open-telemetry/exporter-otlp",
@@ -1571,16 +1575,16 @@
         },
         {
             "name": "opis/json-schema",
-            "version": "2.6.1",
+            "version": "2.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opis/json-schema.git",
-                "reference": "7d8685a78db131eb6a1571cc7b4db8f4b59e8628"
+                "reference": "b87b424da3fbeaab09567910fda48dc88d9dcbd8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opis/json-schema/zipball/7d8685a78db131eb6a1571cc7b4db8f4b59e8628",
-                "reference": "7d8685a78db131eb6a1571cc7b4db8f4b59e8628",
+                "url": "https://api.github.com/repos/opis/json-schema/zipball/b87b424da3fbeaab09567910fda48dc88d9dcbd8",
+                "reference": "b87b424da3fbeaab09567910fda48dc88d9dcbd8",
                 "shasum": ""
             },
             "require": {
@@ -1630,9 +1634,10 @@
             ],
             "support": {
                 "issues": "https://github.com/opis/json-schema/issues",
-                "source": "https://github.com/opis/json-schema/tree/2.6.1"
+                "source": "https://github.com/opis/json-schema/tree/2.6.2"
             },
-            "time": "2026-11-06T04:25:16+00:00"
+            "time": "2026-11-08T08:09:42+00:00",
+            "published-time": "2026-11-11T10:35:41+00:00"
         },
         {
             "name": "opis/string",
@@ -1694,7 +1699,8 @@
                 "issues": "https://github.com/opis/string/issues",
                 "source": "https://github.com/opis/string/tree/2.1.0"
             },
-            "time": "2025-10-17T12:38:41+00:00"
+            "time": "2025-10-17T12:38:41+00:00",
+            "published-time": "2025-10-17T12:40:48+00:00"
         },
         {
             "name": "opis/uri",
@@ -1757,7 +1763,8 @@
                 "issues": "https://github.com/opis/uri/issues",
                 "source": "https://github.com/opis/uri/tree/1.1.0"
             },
-            "time": "2021-05-22T15:57:08+00:00"
+            "time": "2021-05-22T15:57:08+00:00",
+            "published-time": "2021-05-22T16:01:15+00:00"
         },
         {
             "name": "php-http/client-common",
@@ -1903,7 +1910,8 @@
                 "issues": "https://github.com/php-http/discovery/issues",
                 "source": "https://github.com/php-http/discovery/tree/1.20.0"
             },
-            "time": "2024-10-02T11:20:13+00:00"
+            "time": "2024-10-02T11:20:13+00:00",
+            "published-time": "2024-10-02T11:21:00+00:00"
         },
         {
             "name": "php-http/httplug",
@@ -2139,7 +2147,8 @@
                 "issues": "https://github.com/phpDocumentor/ReflectionCommon/issues",
                 "source": "https://github.com/phpDocumentor/ReflectionCommon/tree/2.2.1"
             },
-            "time": "2025-11-10T21:21:55+00:00"
+            "time": "2025-11-10T21:21:55+00:00",
+            "published-time": "2026-09-27T10:14:49+00:00"
         },
         {
             "name": "phpdocumentor/reflection-docblock",
@@ -2204,7 +2213,8 @@
                 "issues": "https://github.com/phpDocumentor/ReflectionDocBlock/issues",
                 "source": "https://github.com/phpDocumentor/ReflectionDocBlock/tree/6.0.3"
             },
-            "time": "2026-03-18T20:49:53+00:00"
+            "time": "2026-03-18T20:49:53+00:00",
+            "published-time": "2026-03-18T20:51:16+00:00"
         },
         {
             "name": "phpdocumentor/type-resolver",
@@ -2262,7 +2272,8 @@
                 "issues": "https://github.com/phpDocumentor/TypeResolver/issues",
                 "source": "https://github.com/phpDocumentor/TypeResolver/tree/2.1.0"
             },
-            "time": "2026-09-27T19:32:54+00:00"
+            "time": "2026-09-27T19:32:54+00:00",
+            "published-time": "2026-09-28T18:39:55+00:00"
         },
         {
             "name": "phpoption/phpoption",
@@ -2384,7 +2395,8 @@
                 "issues": "https://github.com/phpstan/phpdoc-parser/issues",
                 "source": "https://github.com/phpstan/phpdoc-parser/tree/2.4.1"
             },
-            "time": "2026-10-30T19:36:28+00:00"
+            "time": "2026-10-30T19:36:28+00:00",
+            "published-time": "2026-10-30T19:37:11+00:00"
         },
         {
             "name": "predis/predis",
@@ -2565,7 +2577,8 @@
             "support": {
                 "source": "https://github.com/php-fig/cache/tree/3.0.0"
             },
-            "time": "2021-02-03T23:26:27+00:00"
+            "time": "2021-02-03T23:26:27+00:00",
+            "published-time": "2021-02-03T23:27:34+00:00"
         },
         {
             "name": "psr/clock",
@@ -2613,7 +2626,8 @@
                 "issues": "https://github.com/php-fig/clock/issues",
                 "source": "https://github.com/php-fig/clock/tree/1.0.0"
             },
-            "time": "2022-11-25T14:36:26+00:00"
+            "time": "2022-11-25T14:36:26+00:00",
+            "published-time": "2022-11-25T14:59:22+00:00"
         },
         {
             "name": "psr/container",
@@ -2666,7 +2680,8 @@
                 "issues": "https://github.com/php-fig/container/issues",
                 "source": "https://github.com/php-fig/container/tree/2.0.2"
             },
-            "time": "2021-11-05T16:47:00+00:00"
+            "time": "2021-11-05T16:47:00+00:00",
+            "published-time": "2021-11-05T16:53:27+00:00"
         },
         {
             "name": "psr/event-dispatcher",
@@ -2716,7 +2731,8 @@
                 "issues": "https://github.com/php-fig/event-dispatcher/issues",
                 "source": "https://github.com/php-fig/event-dispatcher/tree/1.0.0"
             },
-            "time": "2019-01-08T18:20:26+00:00"
+            "time": "2019-01-08T18:20:26+00:00",
+            "published-time": "2019-03-25T15:31:44+00:00"
         },
         {
             "name": "psr/http-client",
@@ -2768,7 +2784,8 @@
             "support": {
                 "source": "https://github.com/php-fig/http-client"
             },
-            "time": "2023-09-23T14:17:50+00:00"
+            "time": "2023-09-23T14:17:50+00:00",
+            "published-time": "2023-09-23T14:18:12+00:00"
         },
         {
             "name": "psr/http-factory",
@@ -2823,7 +2840,8 @@
             "support": {
                 "source": "https://github.com/php-fig/http-factory"
             },
-            "time": "2024-04-15T12:06:14+00:00"
+            "time": "2024-04-15T12:06:14+00:00",
+            "published-time": "2024-05-10T07:32:19+00:00"
         },
         {
             "name": "psr/http-message",
@@ -2876,7 +2894,8 @@
             "support": {
                 "source": "https://github.com/php-fig/http-message/tree/2.0"
             },
-            "time": "2023-04-04T09:54:51+00:00"
+            "time": "2023-04-04T09:54:51+00:00",
+            "published-time": "2023-04-04T09:55:35+00:00"
         },
         {
             "name": "psr/http-server-handler",
@@ -2932,7 +2951,8 @@
             "support": {
                 "source": "https://github.com/php-fig/http-server-handler/tree/1.0.2"
             },
-            "time": "2023-04-10T20:06:20+00:00"
+            "time": "2023-04-10T20:06:20+00:00",
+            "published-time": "2023-04-10T20:07:30+00:00"
         },
         {
             "name": "psr/http-server-middleware",
@@ -2989,7 +3009,8 @@
                 "issues": "https://github.com/php-fig/http-server-middleware/issues",
                 "source": "https://github.com/php-fig/http-server-middleware/tree/1.0.2"
             },
-            "time": "2023-04-11T06:14:47+00:00"
+            "time": "2023-04-11T06:14:47+00:00",
+            "published-time": "2023-04-11T06:15:22+00:00"
         },
         {
             "name": "psr/log",
@@ -3039,7 +3060,8 @@
             "support": {
                 "source": "https://github.com/php-fig/log/tree/3.0.2"
             },
-            "time": "2024-09-11T13:17:53+00:00"
+            "time": "2024-09-11T13:17:53+00:00",
+            "published-time": "2024-09-11T13:21:14+00:00"
         },
         {
             "name": "psr/simple-cache",
@@ -3090,7 +3112,8 @@
             "support": {
                 "source": "https://github.com/php-fig/simple-cache/tree/3.0.0"
             },
-            "time": "2021-10-29T13:26:27+00:00"
+            "time": "2021-10-29T13:26:27+00:00",
+            "published-time": "2021-10-29T13:27:19+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
@@ -3721,23 +3744,196 @@
             "time": "2026-08-21T20:07:15+00:00"
         },
         {
-            "name": "rasuvaeff/openapi-contract",
-            "version": "v0.16.0",
+            "name": "rasuvaeff/mcp",
+            "version": "v0.1.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/rasuvaeff/openapi-contract.git",
-                "reference": "eb0ab291ee584cba0ff32cce52c8e74e8a96d8f5"
+                "url": "https://github.com/rasuvaeff/mcp.git",
+                "reference": "3c8cfc4662c478a36c0483ae7960748e1aaf989e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rasuvaeff/openapi-contract/zipball/eb0ab291ee584cba0ff32cce52c8e74e8a96d8f5",
-                "reference": "eb0ab291ee584cba0ff32cce52c8e74e8a96d8f5",
+                "url": "https://api.github.com/repos/rasuvaeff/mcp/zipball/3c8cfc4662c478a36c0483ae7960748e1aaf989e",
+                "reference": "3c8cfc4662c478a36c0483ae7960748e1aaf989e",
                 "shasum": ""
             },
             "require": {
-                "opis/json-schema": "^2.6",
-                "php": "8.3 - 8.5",
-                "psr/http-message": "^1.1 || ^2.0"
+                "composer-runtime-api": "^2.0",
+                "mcp/sdk": "~0.10.0",
+                "php": "8.3 - 8.6",
+                "psr/cache": "^2.0 || ^3.0",
+                "psr/container": "^2.0",
+                "psr/http-client": "^1.0",
+                "psr/http-factory": "^1.1",
+                "psr/http-message": "^2.0",
+                "psr/http-server-handler": "^1.0",
+                "psr/http-server-middleware": "^1.0",
+                "psr/log": "^2.0 || ^3.0",
+                "psr/simple-cache": "^2.0 || ^3.0",
+                "symfony/console": "^7.0 || ^8.0",
+                "symfony/uid": "^7.0 || ^8.0"
+            },
+            "require-dev": {
+                "ergebnis/composer-normalize": "^2.51",
+                "firebase/php-jwt": "^7.0",
+                "friendsofphp/php-cs-fixer": "^3.95",
+                "infection/infection": "^0.35",
+                "maglnet/composer-require-checker": "^4.17",
+                "nyholm/psr7": "^1.8",
+                "rasuvaeff/property-testing-testo": "^1.0",
+                "rasuvaeff/rector-named-literals": "^1.0",
+                "rasuvaeff/understudy-testo": "^1.0",
+                "rector/rector": "^2.4",
+                "roave/backward-compatibility-check": "^8.0",
+                "testo/bridge-infection": "^0.1.6",
+                "testo/testo": "^0.10.25",
+                "vimeo/psalm": "^7.0",
+                "yiisoft/test-support": "^3.0"
+            },
+            "suggest": {
+                "firebase/php-jwt": "JWT access-token validation for the OAuth resource server (BearerTokenMiddleware)"
+            },
+            "type": "library",
+            "extra": {
+                "skills": {
+                    "source": "resources/skills"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Rasuvaeff\\Mcp\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Victor Razuvaev",
+                    "email": "rasuvaeff@gmail.com"
+                }
+            ],
+            "description": "Framework-neutral MCP server runtime on the official mcp/sdk: attribute tools, interceptors, visibility, sessions and OAuth over PSR contracts",
+            "homepage": "https://github.com/rasuvaeff/mcp",
+            "keywords": [
+                "ai",
+                "llm",
+                "mcp",
+                "model-context-protocol",
+                "psr-15"
+            ],
+            "support": {
+                "issues": "https://github.com/rasuvaeff/mcp/issues",
+                "source": "https://github.com/rasuvaeff/mcp"
+            },
+            "time": "2026-11-23T19:06:28+00:00",
+            "published-time": "2026-11-23T19:12:09+00:00"
+        },
+        {
+            "name": "rasuvaeff/mcp-openapi",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rasuvaeff/mcp-openapi.git",
+                "reference": "1975d93e3b753eeb31eb25605b278efbba75c256"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rasuvaeff/mcp-openapi/zipball/1975d93e3b753eeb31eb25605b278efbba75c256",
+                "reference": "1975d93e3b753eeb31eb25605b278efbba75c256",
+                "shasum": ""
+            },
+            "require": {
+                "mcp/sdk": "~0.10.0",
+                "php": "8.3 - 8.6",
+                "psr/http-client": "^1.0",
+                "psr/http-factory": "^1.1",
+                "psr/http-message": "^2.0",
+                "psr/http-server-handler": "^1.0",
+                "psr/simple-cache": "^2.0 || ^3.0",
+                "rasuvaeff/mcp": "^0.1",
+                "rasuvaeff/openapi-contract": "^0.19"
+            },
+            "require-dev": {
+                "ergebnis/composer-normalize": "^2.51",
+                "firebase/php-jwt": "^7.0",
+                "friendsofphp/php-cs-fixer": "^3.95",
+                "infection/infection": "^0.35",
+                "maglnet/composer-require-checker": "^4.17",
+                "nyholm/psr7": "^1.8",
+                "rasuvaeff/property-testing-testo": "^1.0",
+                "rasuvaeff/rector-named-literals": "^1.0",
+                "rasuvaeff/understudy-testo": "^1.0",
+                "rector/rector": "^2.4",
+                "roave/backward-compatibility-check": "^8.0",
+                "testo/bridge-infection": "^0.1.6",
+                "testo/testo": "^0.10.25",
+                "vimeo/psalm": "^7.0",
+                "yiisoft/test-support": "^3.0"
+            },
+            "suggest": {
+                "guzzlehttp/guzzle": "PSR-18 HTTP client for the operation executor and the spec loader"
+            },
+            "type": "library",
+            "extra": {
+                "skills": {
+                    "source": "resources/skills"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Rasuvaeff\\Mcp\\OpenApi\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Victor Razuvaev",
+                    "email": "rasuvaeff@gmail.com"
+                }
+            ],
+            "description": "Serve allow-listed OpenAPI operations as MCP tools: PSR-18 or in-process PSR-15 execution, no framework required",
+            "homepage": "https://github.com/rasuvaeff/mcp-openapi",
+            "keywords": [
+                "ai",
+                "llm",
+                "mcp",
+                "model-context-protocol",
+                "openapi",
+                "psr-18"
+            ],
+            "support": {
+                "issues": "https://github.com/rasuvaeff/mcp-openapi/issues",
+                "source": "https://github.com/rasuvaeff/mcp-openapi"
+            },
+            "time": "2026-11-23T19:12:47+00:00",
+            "published-time": "2026-11-23T19:20:37+00:00"
+        },
+        {
+            "name": "rasuvaeff/openapi-contract",
+            "version": "v0.19.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rasuvaeff/openapi-contract.git",
+                "reference": "6445010bde46216720068c84a077a2105082dc9a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rasuvaeff/openapi-contract/zipball/6445010bde46216720068c84a077a2105082dc9a",
+                "reference": "6445010bde46216720068c84a077a2105082dc9a",
+                "shasum": ""
+            },
+            "require": {
+                "opis/json-schema": "^2.6.2",
+                "php": "8.3 - 8.6",
+                "psr/http-factory": "^1.1",
+                "psr/http-message": "^1.1 || ^2.0",
+                "psr/http-server-handler": "^1.0 || ^2.0",
+                "psr/http-server-middleware": "^1.0 || ^2.0"
             },
             "require-dev": {
                 "cebe/php-openapi": "^1.7",
@@ -3756,11 +3952,15 @@
                 "symfony/yaml": "^6.4 || ^7.0 || ^8.0",
                 "testo/bridge-infection": "^0.1.6",
                 "testo/testo": "^0.10.25",
-                "vimeo/psalm": "^6.16"
+                "vimeo/psalm": "^7.0"
             },
             "suggest": {
+                "nyholm/psr7": "Required only by the bin/openapi-contract CLI fixture runner (^1.8); the library and the PSR-15 middleware work with any PSR-7/17 implementation",
                 "symfony/yaml": "Load OpenAPI documents written in YAML"
             },
+            "bin": [
+                "bin/openapi-contract"
+            ],
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -3789,7 +3989,8 @@
                 "issues": "https://github.com/rasuvaeff/openapi-contract/issues",
                 "source": "https://github.com/rasuvaeff/openapi-contract"
             },
-            "time": "2026-10-11T20:19:09+00:00"
+            "time": "2026-11-23T19:04:27+00:00",
+            "published-time": "2026-11-23T19:12:27+00:00"
         },
         {
             "name": "rasuvaeff/payments",
@@ -3858,23 +4059,23 @@
         },
         {
             "name": "rasuvaeff/property-testing-core",
-            "version": "v1.2.0",
+            "version": "v1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rasuvaeff/property-testing-core.git",
-                "reference": "2b5fda1576830b4690f0be561e20963d293dc85a"
+                "reference": "c691924509ad6e61cf6c0b71abd0c7ee4e87c8cd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rasuvaeff/property-testing-core/zipball/2b5fda1576830b4690f0be561e20963d293dc85a",
-                "reference": "2b5fda1576830b4690f0be561e20963d293dc85a",
+                "url": "https://api.github.com/repos/rasuvaeff/property-testing-core/zipball/c691924509ad6e61cf6c0b71abd0c7ee4e87c8cd",
+                "reference": "c691924509ad6e61cf6c0b71abd0c7ee4e87c8cd",
                 "shasum": ""
             },
             "require": {
                 "ext-mbstring": "*",
                 "ext-random": "*",
                 "ext-tokenizer": "*",
-                "php": "8.3 - 8.5"
+                "php": "8.2 - 8.6"
             },
             "conflict": {
                 "rasuvaeff/property-testing": "*"
@@ -3890,7 +4091,7 @@
                 "roave/backward-compatibility-check": "^8.0",
                 "testo/bridge-infection": "^0.1.6",
                 "testo/testo": "^0.10.39 || ^1.0",
-                "vimeo/psalm": "^6.16"
+                "vimeo/psalm": "^7.11"
             },
             "suggest": {
                 "ext-redis": "Required by RedisCorpus with PhpRedisCorpusClient — a regression corpus shared between CI and developers",
@@ -3931,29 +4132,30 @@
                 "issues": "https://github.com/rasuvaeff/property-testing-core/issues",
                 "source": "https://github.com/rasuvaeff/property-testing-core"
             },
-            "time": "2026-10-02T19:47:41+00:00"
+            "time": "2026-11-22T08:20:48+00:00",
+            "published-time": "2026-11-22T08:21:03+00:00"
         },
         {
             "name": "rasuvaeff/property-testing-openapi",
-            "version": "v0.19.0",
+            "version": "v0.23.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rasuvaeff/property-testing-openapi.git",
-                "reference": "945cb61bbb5c975abda0dc20f98cf799e9335658"
+                "reference": "9a70c4c23166ce303b9f914340288d43db9b8f11"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rasuvaeff/property-testing-openapi/zipball/945cb61bbb5c975abda0dc20f98cf799e9335658",
-                "reference": "945cb61bbb5c975abda0dc20f98cf799e9335658",
+                "url": "https://api.github.com/repos/rasuvaeff/property-testing-openapi/zipball/9a70c4c23166ce303b9f914340288d43db9b8f11",
+                "reference": "9a70c4c23166ce303b9f914340288d43db9b8f11",
                 "shasum": ""
             },
             "require": {
                 "ext-mbstring": "*",
-                "php": "8.3 - 8.5",
+                "php": "8.3 - 8.6",
                 "psr/http-factory": "^1.1",
                 "psr/http-message": "^1.1 || ^2.0",
                 "psr/http-server-handler": "^1.0",
-                "rasuvaeff/openapi-contract": "^0.16",
+                "rasuvaeff/openapi-contract": "^0.19",
                 "rasuvaeff/property-testing-core": "^1.0"
             },
             "require-dev": {
@@ -3972,7 +4174,7 @@
                 "roave/backward-compatibility-check": "^8.0",
                 "testo/bridge-infection": "^0.1.6",
                 "testo/testo": "^0.10.39",
-                "vimeo/psalm": "^6.16"
+                "vimeo/psalm": "^7.1"
             },
             "suggest": {
                 "ext-redis": "Required for PROPERTY_DB=redis://... shared regression corpora",
@@ -4006,7 +4208,8 @@
                 "issues": "https://github.com/rasuvaeff/property-testing-openapi/issues",
                 "source": "https://github.com/rasuvaeff/property-testing-openapi"
             },
-            "time": "2026-10-11T20:37:05+00:00"
+            "time": "2026-11-24T06:35:47+00:00",
+            "published-time": "2026-11-24T06:37:27+00:00"
         },
         {
             "name": "rasuvaeff/resilience",
@@ -4741,20 +4944,20 @@
         },
         {
             "name": "rasuvaeff/yii3-audit-log",
-            "version": "v1.2.0",
+            "version": "v1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rasuvaeff/yii3-audit-log.git",
-                "reference": "6fa30e7e820407fed1cd5eb9ce68e4b78d24cde3"
+                "reference": "91b10b8abd2fe009b28f4cc6d86e7a42ef3c287d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rasuvaeff/yii3-audit-log/zipball/6fa30e7e820407fed1cd5eb9ce68e4b78d24cde3",
-                "reference": "6fa30e7e820407fed1cd5eb9ce68e4b78d24cde3",
+                "url": "https://api.github.com/repos/rasuvaeff/yii3-audit-log/zipball/91b10b8abd2fe009b28f4cc6d86e7a42ef3c287d",
+                "reference": "91b10b8abd2fe009b28f4cc6d86e7a42ef3c287d",
                 "shasum": ""
             },
             "require": {
-                "php": "8.3 - 8.5",
+                "php": "8.3 - 8.6",
                 "psr/clock": "^1.0"
             },
             "require-dev": {
@@ -4767,7 +4970,7 @@
                 "symfony/uid": "^7.0 || ^8.0",
                 "testo/bridge-infection": "^0.1.6",
                 "testo/testo": "^0.10.25",
-                "vimeo/psalm": "^6.16"
+                "vimeo/psalm": "^7.0"
             },
             "suggest": {
                 "symfony/uid": "Bind Uuid7IdGenerator to get time-ordered audit event ids (UUIDv7 as 32 hex chars)"
@@ -4813,7 +5016,8 @@
                 "issues": "https://github.com/rasuvaeff/yii3-audit-log/issues",
                 "source": "https://github.com/rasuvaeff/yii3-audit-log"
             },
-            "time": "2026-07-25T10:55:48+00:00"
+            "time": "2026-11-22T13:14:47+00:00",
+            "published-time": "2026-11-22T13:14:57+00:00"
         },
         {
             "name": "rasuvaeff/yii3-audit-log-db",
@@ -6056,34 +6260,32 @@
         },
         {
             "name": "rasuvaeff/yii3-mcp",
-            "version": "v5.0.0",
+            "version": "v6.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rasuvaeff/yii3-mcp.git",
-                "reference": "ffc8cb505c8e3cc7cb6298418160d5e599eb03ff"
+                "reference": "ec5a4e5460dc306850810f595a69b2ae847e2d42"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rasuvaeff/yii3-mcp/zipball/ffc8cb505c8e3cc7cb6298418160d5e599eb03ff",
-                "reference": "ffc8cb505c8e3cc7cb6298418160d5e599eb03ff",
+                "url": "https://api.github.com/repos/rasuvaeff/yii3-mcp/zipball/ec5a4e5460dc306850810f595a69b2ae847e2d42",
+                "reference": "ec5a4e5460dc306850810f595a69b2ae847e2d42",
                 "shasum": ""
             },
             "require": {
-                "composer-runtime-api": "^2.0",
                 "mcp/sdk": "~0.10.0",
-                "php": "8.3 - 8.5",
+                "php": "8.3 - 8.6",
                 "psr/cache": "^2.0 || ^3.0",
                 "psr/container": "^2.0",
                 "psr/http-client": "^1.0",
                 "psr/http-factory": "^1.1",
                 "psr/http-message": "^2.0",
                 "psr/http-server-handler": "^1.0",
-                "psr/http-server-middleware": "^1.0",
-                "psr/log": "^2.0 || ^3.0",
                 "psr/simple-cache": "^2.0 || ^3.0",
+                "rasuvaeff/mcp": "^0.1",
+                "rasuvaeff/mcp-openapi": "^0.1",
                 "symfony/console": "^7.0 || ^8.0",
-                "symfony/uid": "^7.0 || ^8.0",
-                "symfony/yaml": "^7.0 || ^8.0"
+                "symfony/uid": "^7.0 || ^8.0"
             },
             "require-dev": {
                 "ergebnis/composer-normalize": "^2.51",
@@ -6100,6 +6302,7 @@
                 "testo/bridge-infection": "^0.1.6",
                 "testo/testo": "^0.10.25",
                 "vimeo/psalm": "^7.0",
+                "yiisoft/di": "^1.4",
                 "yiisoft/test-support": "^3.0"
             },
             "suggest": {
@@ -6148,27 +6351,31 @@
                 "issues": "https://github.com/rasuvaeff/yii3-mcp/issues",
                 "source": "https://github.com/rasuvaeff/yii3-mcp"
             },
-            "time": "2026-11-11T09:34:43+00:00"
+            "time": "2026-11-24T15:43:24+00:00",
+            "published-time": "2026-11-24T15:45:09+00:00"
         },
         {
             "name": "rasuvaeff/yii3-mcp-audit-log-bridge",
-            "version": "v2.3.0",
+            "version": "v3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rasuvaeff/yii3-mcp-audit-log-bridge.git",
-                "reference": "b285bb5d62e3800410f2d01feaad41bd5cb83488"
+                "reference": "7731897d96e8c1d9435345de9411bc92b7949d64"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rasuvaeff/yii3-mcp-audit-log-bridge/zipball/b285bb5d62e3800410f2d01feaad41bd5cb83488",
-                "reference": "b285bb5d62e3800410f2d01feaad41bd5cb83488",
+                "url": "https://api.github.com/repos/rasuvaeff/yii3-mcp-audit-log-bridge/zipball/7731897d96e8c1d9435345de9411bc92b7949d64",
+                "reference": "7731897d96e8c1d9435345de9411bc92b7949d64",
                 "shasum": ""
             },
             "require": {
                 "mcp/sdk": "~0.10.0",
-                "php": "8.3 - 8.5",
-                "rasuvaeff/yii3-audit-log": "^1.0",
-                "rasuvaeff/yii3-mcp": "^5.0"
+                "php": "8.3 - 8.6",
+                "rasuvaeff/mcp": "^0.1",
+                "rasuvaeff/yii3-audit-log": "^1.0"
+            },
+            "conflict": {
+                "rasuvaeff/yii3-mcp": "<6.0"
             },
             "require-dev": {
                 "ergebnis/composer-normalize": "^2.51",
@@ -6176,7 +6383,7 @@
                 "infection/infection": "^0.35",
                 "maglnet/composer-require-checker": "^4.17",
                 "nyholm/psr7": "^1.8",
-                "rasuvaeff/yii3-mcp-rbac-bridge": "^1.4",
+                "rasuvaeff/yii3-mcp-rbac-bridge": "^2.0",
                 "rector/rector": "^2.4",
                 "roave/backward-compatibility-check": "^8.0",
                 "testo/bridge-infection": "^0.1.6",
@@ -6217,28 +6424,32 @@
                 "issues": "https://github.com/rasuvaeff/yii3-mcp-audit-log-bridge/issues",
                 "source": "https://github.com/rasuvaeff/yii3-mcp-audit-log-bridge"
             },
-            "time": "2026-11-11T09:59:17+00:00"
+            "time": "2026-11-24T15:50:49+00:00",
+            "published-time": "2026-11-24T15:51:59+00:00"
         },
         {
             "name": "rasuvaeff/yii3-mcp-rbac-bridge",
-            "version": "v1.4.0",
+            "version": "v2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rasuvaeff/yii3-mcp-rbac-bridge.git",
-                "reference": "d9fe5dd647a154b04a23bfaff9a42df9a9b3cc76"
+                "reference": "ae295ea2491f3022cc46fa87be6ef6d247e249a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rasuvaeff/yii3-mcp-rbac-bridge/zipball/d9fe5dd647a154b04a23bfaff9a42df9a9b3cc76",
-                "reference": "d9fe5dd647a154b04a23bfaff9a42df9a9b3cc76",
+                "url": "https://api.github.com/repos/rasuvaeff/yii3-mcp-rbac-bridge/zipball/ae295ea2491f3022cc46fa87be6ef6d247e249a2",
+                "reference": "ae295ea2491f3022cc46fa87be6ef6d247e249a2",
                 "shasum": ""
             },
             "require": {
                 "mcp/sdk": "~0.10.0",
-                "php": "8.3 - 8.5",
-                "rasuvaeff/yii3-mcp": "^5.0",
+                "php": "8.3 - 8.6",
+                "rasuvaeff/mcp": "^0.1",
                 "yiisoft/access": "^2.0",
                 "yiisoft/user": "^2.0"
+            },
+            "conflict": {
+                "rasuvaeff/yii3-mcp": "<6.0"
             },
             "require-dev": {
                 "ergebnis/composer-normalize": "^2.51",
@@ -6286,28 +6497,32 @@
                 "issues": "https://github.com/rasuvaeff/yii3-mcp-rbac-bridge/issues",
                 "source": "https://github.com/rasuvaeff/yii3-mcp-rbac-bridge"
             },
-            "time": "2026-11-11T09:52:08+00:00"
+            "time": "2026-11-24T15:47:29+00:00",
+            "published-time": "2026-11-24T15:48:35+00:00"
         },
         {
             "name": "rasuvaeff/yii3-mcp-telemetry-bridge",
-            "version": "v1.5.0",
+            "version": "v2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rasuvaeff/yii3-mcp-telemetry-bridge.git",
-                "reference": "28344fea1f76cf70f597d7bfa864666a55812b0c"
+                "reference": "d52e144cbe52af8014c0287f63f6d729aaaec89b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rasuvaeff/yii3-mcp-telemetry-bridge/zipball/28344fea1f76cf70f597d7bfa864666a55812b0c",
-                "reference": "28344fea1f76cf70f597d7bfa864666a55812b0c",
+                "url": "https://api.github.com/repos/rasuvaeff/yii3-mcp-telemetry-bridge/zipball/d52e144cbe52af8014c0287f63f6d729aaaec89b",
+                "reference": "d52e144cbe52af8014c0287f63f6d729aaaec89b",
                 "shasum": ""
             },
             "require": {
                 "mcp/sdk": "~0.10.0",
                 "php": "8.3 - 8.5",
-                "rasuvaeff/yii3-mcp": "^5.0",
+                "rasuvaeff/mcp": "^0.1",
                 "rasuvaeff/yii3-metrics": "^1.0 || ^2.0",
                 "rasuvaeff/yii3-telemetry": "^1.0"
+            },
+            "conflict": {
+                "rasuvaeff/yii3-mcp": "<6.0"
             },
             "require-dev": {
                 "ergebnis/composer-normalize": "^2.51",
@@ -6356,7 +6571,8 @@
                 "issues": "https://github.com/rasuvaeff/yii3-mcp-telemetry-bridge/issues",
                 "source": "https://github.com/rasuvaeff/yii3-mcp-telemetry-bridge"
             },
-            "time": "2026-11-11T09:58:20+00:00"
+            "time": "2026-11-24T15:50:54+00:00",
+            "published-time": "2026-11-24T15:52:05+00:00"
         },
         {
             "name": "rasuvaeff/yii3-metrics",
@@ -6447,7 +6663,8 @@
                 "issues": "https://github.com/rasuvaeff/yii3-metrics/issues",
                 "source": "https://github.com/rasuvaeff/yii3-metrics"
             },
-            "time": "2026-10-02T19:53:38+00:00"
+            "time": "2026-10-02T19:53:38+00:00",
+            "published-time": "2026-10-02T19:53:48+00:00"
         },
         {
             "name": "rasuvaeff/yii3-metrics-prometheus",
@@ -7358,7 +7575,8 @@
                 "issues": "https://github.com/rasuvaeff/yii3-telemetry/issues",
                 "source": "https://github.com/rasuvaeff/yii3-telemetry"
             },
-            "time": "2026-10-17T15:27:56+00:00"
+            "time": "2026-10-17T15:27:56+00:00",
+            "published-time": "2026-10-17T15:28:14+00:00"
         },
         {
             "name": "rasuvaeff/yii3-telemetry-otel",
@@ -8252,7 +8470,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-11-03T21:47:07+00:00"
+            "time": "2026-11-03T21:47:07+00:00",
+            "published-time": "2026-11-04T11:27:31+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -8323,7 +8542,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-16T14:15:10+00:00"
+            "time": "2026-09-16T14:15:10+00:00",
+            "published-time": "2026-11-04T11:25:34+00:00"
         },
         {
             "name": "symfony/event-dispatcher-contracts",
@@ -8711,7 +8931,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-04-10T16:19:22+00:00"
+            "time": "2026-04-10T16:19:22+00:00",
+            "published-time": "2026-04-26T14:44:50+00:00"
         },
         {
             "name": "symfony/polyfill-intl-grapheme",
@@ -8793,7 +9014,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-15T09:18:53+00:00"
+            "time": "2026-10-15T09:18:53+00:00",
+            "published-time": "2026-10-28T10:07:44+00:00"
         },
         {
             "name": "symfony/polyfill-intl-idn",
@@ -8965,7 +9187,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-23T22:02:09+00:00"
+            "time": "2026-09-23T22:02:09+00:00",
+            "published-time": "2026-09-30T10:23:47+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -9050,7 +9273,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-28T09:35:49+00:00"
+            "time": "2026-10-28T09:35:49+00:00",
+            "published-time": "2026-10-28T10:07:45+00:00"
         },
         {
             "name": "symfony/polyfill-php80",
@@ -9134,7 +9358,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-25T15:50:05+00:00"
+            "time": "2026-09-25T15:50:05+00:00",
+            "published-time": "2026-09-30T10:23:35+00:00"
         },
         {
             "name": "symfony/polyfill-php82",
@@ -9214,7 +9439,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-25T15:50:05+00:00"
+            "time": "2026-09-25T15:50:05+00:00",
+            "published-time": "2026-09-30T10:23:32+00:00"
         },
         {
             "name": "symfony/polyfill-uuid",
@@ -9297,7 +9523,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-24T05:20:52+00:00"
+            "time": "2026-09-24T05:20:52+00:00",
+            "published-time": "2026-09-30T10:23:49+00:00"
         },
         {
             "name": "symfony/service-contracts",
@@ -9384,7 +9611,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-20T17:38:25+00:00"
+            "time": "2026-10-20T17:38:25+00:00",
+            "published-time": "2026-11-04T11:25:33+00:00"
         },
         {
             "name": "symfony/string",
@@ -9474,7 +9702,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-23T17:06:53+00:00"
+            "time": "2026-10-23T17:06:53+00:00",
+            "published-time": "2026-10-28T18:24:27+00:00"
         },
         {
             "name": "symfony/uid",
@@ -9552,7 +9781,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-12T14:32:04+00:00"
+            "time": "2026-10-12T14:32:04+00:00",
+            "published-time": "2026-10-14T06:48:53+00:00"
         },
         {
             "name": "symfony/workflow",
@@ -9858,16 +10088,16 @@
         },
         {
             "name": "webmozart/assert",
-            "version": "2.5.0",
+            "version": "2.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webmozarts/assert.git",
-                "reference": "8a163706bbcac613733dba03f51e13b5eb1bb819"
+                "reference": "e578132c01bd0c64108386ab20d8217cd175ddec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webmozarts/assert/zipball/8a163706bbcac613733dba03f51e13b5eb1bb819",
-                "reference": "8a163706bbcac613733dba03f51e13b5eb1bb819",
+                "url": "https://api.github.com/repos/webmozarts/assert/zipball/e578132c01bd0c64108386ab20d8217cd175ddec",
+                "reference": "e578132c01bd0c64108386ab20d8217cd175ddec",
                 "shasum": ""
             },
             "require": {
@@ -9918,9 +10148,10 @@
             ],
             "support": {
                 "issues": "https://github.com/webmozarts/assert/issues",
-                "source": "https://github.com/webmozarts/assert/tree/2.5.0"
+                "source": "https://github.com/webmozarts/assert/tree/2.5.1"
             },
-            "time": "2026-10-05T23:14:19+00:00"
+            "time": "2026-11-15T13:41:13+00:00",
+            "published-time": "2026-11-15T13:41:42+00:00"
         },
         {
             "name": "yiisoft/access",
@@ -9992,7 +10223,8 @@
                     "type": "opencollective"
                 }
             ],
-            "time": "2026-10-31T13:05:54+00:00"
+            "time": "2026-10-31T13:05:54+00:00",
+            "published-time": "2026-10-31T13:06:35+00:00"
         },
         {
             "name": "yiisoft/aliases",
@@ -10302,7 +10534,8 @@
                     "type": "opencollective"
                 }
             ],
-            "time": "2026-08-11T09:46:21+00:00"
+            "time": "2026-08-11T09:46:21+00:00",
+            "published-time": "2026-08-11T09:46:47+00:00"
         },
         {
             "name": "yiisoft/cache",
@@ -10618,7 +10851,8 @@
                     "type": "opencollective"
                 }
             ],
-            "time": "2025-12-08T12:51:15+00:00"
+            "time": "2025-12-08T12:51:15+00:00",
+            "published-time": "2025-12-08T12:51:49+00:00"
         },
         {
             "name": "yiisoft/csrf",
@@ -11947,7 +12181,8 @@
                     "type": "opencollective"
                 }
             ],
-            "time": "2025-11-25T09:08:29+00:00"
+            "time": "2025-11-25T09:08:29+00:00",
+            "published-time": "2025-11-25T09:08:54+00:00"
         },
         {
             "name": "yiisoft/hydrator",
@@ -13352,7 +13587,8 @@
                     "type": "opencollective"
                 }
             ],
-            "time": "2025-11-25T09:24:59+00:00"
+            "time": "2025-11-25T09:24:59+00:00",
+            "published-time": "2025-11-25T09:25:21+00:00"
         },
         {
             "name": "yiisoft/session",
@@ -13441,7 +13677,8 @@
                     "type": "opencollective"
                 }
             ],
-            "time": "2026-09-30T06:31:12+00:00"
+            "time": "2026-09-30T06:31:12+00:00",
+            "published-time": "2026-09-30T06:31:46+00:00"
         },
         {
             "name": "yiisoft/strings",
@@ -13514,7 +13751,8 @@
                     "type": "opencollective"
                 }
             ],
-            "time": "2026-10-30T06:57:22+00:00"
+            "time": "2026-10-30T06:57:22+00:00",
+            "published-time": "2026-10-30T06:57:49+00:00"
         },
         {
             "name": "yiisoft/translator",
@@ -13682,7 +13920,8 @@
                     "type": "opencollective"
                 }
             ],
-            "time": "2025-12-23T06:15:18+00:00"
+            "time": "2025-12-23T06:15:18+00:00",
+            "published-time": "2025-12-23T06:15:39+00:00"
         },
         {
             "name": "yiisoft/validator",
@@ -19836,7 +20075,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-05-26T12:45:58+00:00"
+            "time": "2026-05-26T12:45:58+00:00",
+            "published-time": "2026-05-26T13:40:34+00:00"
         },
         {
             "name": "symfony/polyfill-php84",
@@ -21556,5 +21796,5 @@
     "platform-overrides": {
         "php": "8.5.0"
     },
-    "plugin-api-version": "2.9.0"
+    "plugin-api-version": "2.11.0"
 }
