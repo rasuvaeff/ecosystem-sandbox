@@ -48,6 +48,9 @@ return [
             'rasuvaeff/yii3-maintenance-mode' => [
                 'config/di.php',
             ],
+            'rasuvaeff/yii3-mcp' => [
+                'config/di.php',
+            ],
             'rasuvaeff/yii3-metrics-prometheus' => [
                 'config/di.php',
             ],
@@ -112,9 +115,6 @@ return [
                 'config/di.php',
             ],
             'rasuvaeff/yii3-idempotency' => [
-                'config/di.php',
-            ],
-            'rasuvaeff/yii3-mcp' => [
                 'config/di.php',
             ],
             'rasuvaeff/yii3-metrics' => [
@@ -215,6 +215,9 @@ return [
             'rasuvaeff/yii3-maintenance-mode' => [
                 'config/params.php',
             ],
+            'rasuvaeff/yii3-mcp' => [
+                'config/params.php',
+            ],
             'rasuvaeff/yii3-metrics-prometheus' => [
                 'config/params.php',
             ],
@@ -285,9 +288,6 @@ return [
                 'config/params.php',
             ],
             'rasuvaeff/yii3-idempotency' => [
-                'config/params.php',
-            ],
-            'rasuvaeff/yii3-mcp' => [
                 'config/params.php',
             ],
             'rasuvaeff/yii3-metrics' => [
