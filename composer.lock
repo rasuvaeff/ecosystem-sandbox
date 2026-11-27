@@ -8695,16 +8695,16 @@
         },
         {
             "name": "symfony/mime",
-            "version": "v8.1.7",
+            "version": "v8.1.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/mime.git",
-                "reference": "773ac57f20e2795bdadb65b5b1b5f4850d498283"
+                "reference": "4bf4ecda5ac1f1db2e9a0793675d2fc69d7cc864"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/mime/zipball/773ac57f20e2795bdadb65b5b1b5f4850d498283",
-                "reference": "773ac57f20e2795bdadb65b5b1b5f4850d498283",
+                "url": "https://api.github.com/repos/symfony/mime/zipball/4bf4ecda5ac1f1db2e9a0793675d2fc69d7cc864",
+                "reference": "4bf4ecda5ac1f1db2e9a0793675d2fc69d7cc864",
                 "shasum": ""
             },
             "require": {
@@ -8757,7 +8757,7 @@
                 "mime-type"
             ],
             "support": {
-                "source": "https://github.com/symfony/mime/tree/v8.1.7"
+                "source": "https://github.com/symfony/mime/tree/v8.1.12"
             },
             "funding": [
                 {
@@ -8777,7 +8777,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-04T11:02:17+00:00"
+            "time": "2026-11-24T16:43:41+00:00",
+            "published-time": "2026-11-25T09:29:14+00:00"
         },
         {
             "name": "symfony/options-resolver",
@@ -9102,7 +9103,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-23T14:40:04+00:00"
+            "time": "2026-09-23T14:40:04+00:00",
+            "published-time": "2026-09-30T10:23:39+00:00"
         },
         {
             "name": "symfony/polyfill-intl-normalizer",
@@ -19596,16 +19598,16 @@
         },
         {
             "name": "symfony/config",
-            "version": "v8.1.5",
+            "version": "v8.1.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
-                "reference": "ec711a6c14ae287d9618fbd2c9de4e223a1a4b02"
+                "reference": "7b7f07b1ec6da7d7cada3ed73fa302a8e791ecf0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/config/zipball/ec711a6c14ae287d9618fbd2c9de4e223a1a4b02",
-                "reference": "ec711a6c14ae287d9618fbd2c9de4e223a1a4b02",
+                "url": "https://api.github.com/repos/symfony/config/zipball/7b7f07b1ec6da7d7cada3ed73fa302a8e791ecf0",
+                "reference": "7b7f07b1ec6da7d7cada3ed73fa302a8e791ecf0",
                 "shasum": ""
             },
             "require": {
@@ -19650,7 +19652,7 @@
             "description": "Helps you find, load, combine, autofill and validate configuration values of any kind",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/config/tree/v8.1.5"
+                "source": "https://github.com/symfony/config/tree/v8.1.12"
             },
             "funding": [
                 {
@@ -19670,7 +19672,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-08-20T09:59:12+00:00"
+            "time": "2026-11-09T20:09:12+00:00",
+            "published-time": "2026-11-25T09:29:40+00:00"
         },
         {
             "name": "symfony/dependency-injection",
@@ -19841,16 +19844,16 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v8.1.9",
+            "version": "v8.1.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "43d109c803d22c00bb820ed45df250b6a8792ca2"
+                "reference": "a8f7a3cf9d3140902eaee85baf1f8e98666d336a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/43d109c803d22c00bb820ed45df250b6a8792ca2",
-                "reference": "43d109c803d22c00bb820ed45df250b6a8792ca2",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/a8f7a3cf9d3140902eaee85baf1f8e98666d336a",
+                "reference": "a8f7a3cf9d3140902eaee85baf1f8e98666d336a",
                 "shasum": ""
             },
             "require": {
@@ -19888,7 +19891,7 @@
             "description": "Provides basic utilities for the filesystem",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/filesystem/tree/v8.1.9"
+                "source": "https://github.com/symfony/filesystem/tree/v8.1.12"
             },
             "funding": [
                 {
@@ -19908,7 +19911,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-06T20:05:50+00:00"
+            "time": "2026-11-24T15:59:55+00:00",
+            "published-time": "2026-11-25T09:29:32+00:00"
         },
         {
             "name": "symfony/polyfill-deepclone",
@@ -20240,16 +20244,16 @@
         },
         {
             "name": "symfony/process",
-            "version": "v8.1.9",
+            "version": "v8.1.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "59a682fd049b2d4d37c444f5ac21b7d01b8c7189"
+                "reference": "4969fe2cf92f0075b070ab2bc0faef2734114bae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/59a682fd049b2d4d37c444f5ac21b7d01b8c7189",
-                "reference": "59a682fd049b2d4d37c444f5ac21b7d01b8c7189",
+                "url": "https://api.github.com/repos/symfony/process/zipball/4969fe2cf92f0075b070ab2bc0faef2734114bae",
+                "reference": "4969fe2cf92f0075b070ab2bc0faef2734114bae",
                 "shasum": ""
             },
             "require": {
@@ -20281,7 +20285,7 @@
             "description": "Executes commands in sub-processes",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/process/tree/v8.1.9"
+                "source": "https://github.com/symfony/process/tree/v8.1.12"
             },
             "funding": [
                 {
@@ -20301,7 +20305,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-08T16:57:43+00:00"
+            "time": "2026-11-23T09:20:57+00:00",
+            "published-time": "2026-11-25T09:29:08+00:00"
         },
         {
             "name": "symfony/stopwatch",
