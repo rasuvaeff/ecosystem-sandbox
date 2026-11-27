@@ -14,7 +14,7 @@ $(VENDOR): composer.json composer.lock
 ##@ Stack: up down logs shell migrate
 ##@ Web UI: ui ui-full ui-down
 ##@ By hand: checkout checkout-replay inspect-order inspect-outbox
-##@ Static checks: check cs cs-fix psalm rector rector-fix deptrac
+##@ Static checks: check cs cs-fix psalm rector rector-fix deptrac audit
 ##@ Tests: testo property-test mutation testo-integration
 ##@ Scenarios (each asserts an effect, on a fresh volume): smoke contract-smoke property-openapi-smoke specification-smoke centrifugo-smoke centrifugo-http-smoke projection-smoke redis-smoke db-adapters-smoke mcp-smoke mcp-rbac-smoke mcp-http-smoke payments-testing-smoke settings-smoke utm-smoke webhook-smoke webhook-http-smoke observability observability-smoke prometheus-outcomes-smoke redis-queue-smoke ui-smoke ui-full-smoke ui-browser-smoke platform-smoke analytics-smoke analytics-roundtrip correlation-smoke
 ##@ Failure simulations: simulate-maintenance simulate-network-collapse simulate-lost-reply simulate-race-condition simulate-kill-switch captcha-smoke
@@ -32,7 +32,7 @@ help: ## this list
 	        } \
 	    }' $(MAKEFILE_LIST)
 
-.PHONY: help check cs cs-fix psalm rector rector-fix deptrac up down logs migrate smoke shell checkout checkout-replay inspect-order inspect-outbox unit-test integration-test contract-test property-test traces metrics mcp observability observability-smoke prometheus-outcomes-smoke correlation-smoke simulate-maintenance redis-queue-smoke contract-smoke property-openapi-smoke specification-smoke centrifugo-smoke centrifugo-http-smoke projection-smoke redis-smoke db-adapters-smoke mcp-smoke mcp-rbac-smoke mcp-http-smoke payments-testing-smoke settings-smoke utm-smoke webhook-smoke webhook-http-smoke simulate-network-collapse simulate-race-condition simulate-lost-reply simulate-kill-switch captcha-smoke ui ui-full ui-down ui-smoke ui-full-smoke ui-browser-smoke testo mutation testo-integration analytics-smoke analytics-roundtrip platform-smoke
+.PHONY: help audit check cs cs-fix psalm rector rector-fix deptrac up down logs migrate smoke shell checkout checkout-replay inspect-order inspect-outbox unit-test integration-test contract-test property-test traces metrics mcp observability observability-smoke prometheus-outcomes-smoke correlation-smoke simulate-maintenance redis-queue-smoke contract-smoke property-openapi-smoke specification-smoke centrifugo-smoke centrifugo-http-smoke projection-smoke redis-smoke db-adapters-smoke mcp-smoke mcp-rbac-smoke mcp-http-smoke payments-testing-smoke settings-smoke utm-smoke webhook-smoke webhook-http-smoke simulate-network-collapse simulate-race-condition simulate-lost-reply simulate-kill-switch captcha-smoke ui ui-full ui-down ui-smoke ui-full-smoke ui-browser-smoke testo mutation testo-integration analytics-smoke analytics-roundtrip platform-smoke
 
 up: ## start the app and its services (PostgreSQL, Redis, Jaeger, mocks)
 	$(COMPOSE) up -d --build --wait app
@@ -253,6 +253,11 @@ captcha-smoke: ## the opt-in reCAPTCHA gate on the checkout
 # any "done"; the scenario targets prove behaviour, these prove the code.
 check: $(VENDOR) ## static gate: php-cs-fixer, psalm level 1, deptrac, rector, class references
 	$(COMPOSE) run --rm --no-deps app composer check
+
+# Not part of `check`: an advisory appears without a commit, so a weekly
+# workflow runs this too. It reads the lock file and needs no vendor.
+audit: ## security advisories against composer.lock; abandoned packages are only reported
+	$(COMPOSE) run --rm --no-deps app composer audit --locked --abandoned=report --no-interaction
 
 cs: $(VENDOR) ## php-cs-fixer, dry run
 	$(COMPOSE) run --rm --no-deps app composer cs

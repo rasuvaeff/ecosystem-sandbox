@@ -187,7 +187,7 @@ application by `rasuvaeff/openapi-contract`.
 
 `make` alone (or `make help`) lists every target below with one line on what it does.
 
-CI (`.github/workflows/build.yml`) runs every target below on each push and pull request: `check`, `testo` and `property-test` in one job, the mutation gate in another (its ledger travels between runs in the Actions cache, so the ratchet compares against the previous run), and each scenario in a job of its own, so each starts on a fresh volume. The quality and mutation jobs write a test report to the run's summary page (`bin/test-summary.php`, the same reader as the tests page) and keep the reports as artifacts: testo's JUnit and HTML, Infection's HTML report of every mutant.
+CI (`.github/workflows/build.yml`) runs every target below on each push and pull request: `check`, `testo` and `property-test` in one job, the mutation gate in another (its ledger travels between runs in the Actions cache, so the ratchet compares against the previous run), and each scenario in a job of its own, so each starts on a fresh volume. The quality and mutation jobs write a test report to the run's summary page (`bin/test-summary.php`, the same reader as the tests page) and keep the reports as artifacts: testo's JUnit and HTML, Infection's HTML report of every mutant. A separate workflow (`.github/workflows/audit.yml`) runs `make audit` — `composer audit` over the committed lock file — on each pull request, each push to `master` and once a week, because an advisory appears without a commit.
 
 ### Baseline
 

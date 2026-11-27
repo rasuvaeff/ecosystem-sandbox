@@ -186,7 +186,7 @@ HTTP-контракт генерируется `yiisoft/yii-swagger` из swagge
 
 `make` без аргументов (или `make help`) выводит все таргеты ниже с однострочным описанием.
 
-CI (`.github/workflows/build.yml`) на каждый push и pull request гоняет все цели ниже: `check`, `testo` и `property-test` в одном job, mutation-гейт в другом (его журнал переезжает между прогонами в кэше Actions, поэтому рэтчет сравнивает с предыдущим прогоном) и каждый сценарий в отдельном job, так что каждый стартует на чистом volume. Job'ы quality и mutation пишут отчёт о тестах на страницу сводки прогона (`bin/test-summary.php`, тот же разбор, что у страницы тестов) и сохраняют отчёты артефактами: JUnit и HTML от testo, HTML-отчёт Infection по каждому мутанту.
+CI (`.github/workflows/build.yml`) на каждый push и pull request гоняет все цели ниже: `check`, `testo` и `property-test` в одном job, mutation-гейт в другом (его журнал переезжает между прогонами в кэше Actions, поэтому рэтчет сравнивает с предыдущим прогоном) и каждый сценарий в отдельном job, так что каждый стартует на чистом volume. Job'ы quality и mutation пишут отчёт о тестах на страницу сводки прогона (`bin/test-summary.php`, тот же разбор, что у страницы тестов) и сохраняют отчёты артефактами: JUnit и HTML от testo, HTML-отчёт Infection по каждому мутанту. Отдельный workflow (`.github/workflows/audit.yml`) запускает `make audit` (`composer audit` по закоммиченному lock-файлу) на каждый pull request, каждый push в `master` и раз в неделю: advisory появляется без коммита.
 
 ### База
 
