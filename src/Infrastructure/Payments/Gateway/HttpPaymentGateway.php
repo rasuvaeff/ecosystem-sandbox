@@ -55,7 +55,7 @@ final readonly class HttpPaymentGateway implements PaymentGatewayInterface
             headers: [
                 'Accept' => 'application/json',
                 'Content-Type' => 'application/json',
-                'Idempotency-Key' => $request->idempotencyKey ?? (string) $request->operationId,
+                'Idempotency-Key' => $request->idempotencyKey,
             ],
             body: json_encode([
                 'orderId' => (string) ($request->metadata['orderId'] ?? $request->operationId),
@@ -113,6 +113,9 @@ final readonly class HttpPaymentGateway implements PaymentGatewayInterface
                 code: (string) ($payload['error'] ?? 'payment_declined'),
                 message: 'Payment was declined by the sandbox gateway',
             ),
+            // the sandbox bank charges in one step: an approved charge took
+            // the whole amount, a declined one took nothing
+            capturedAmount: $approved ? $request->amount : Money::minorUnits(amount: 0, currency: $request->amount->currency),
         );
     }
 
@@ -150,6 +153,7 @@ final readonly class HttpPaymentGateway implements PaymentGatewayInterface
             updatedAt: $now,
             requestInfo: new ProviderRequestInfo(receivedAt: $now),
             failure: $charged ? null : new PaymentFailure(code: 'not_found', message: 'The bank holds no charge under this key'),
+            capturedAmount: Money::minorUnits(amount: $charged ? $payment['amountCents'] : 0, currency: 'USD'),
         );
     }
 
